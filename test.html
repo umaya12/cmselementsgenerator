@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Drag and Drop Beispiel</title>
+   <style>
+      #board {
+         width: 500px;
+         height: 500px;
+         border: 2px solid black;
+         position: relative;
+         overflow: hidden;
+      }
+
+      .draggable {
+         width: 100px;
+         height: 100px;
+         position: absolute;
+         background-color: blue;
+         cursor: pointer;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="show"></div>
+   <div id="board">
+      <div class="draggable"
+         style="left: 20px; top: 20px;"></div>
+      <div class="draggable"
+         style="left: 150px; top: 50px;background-color: red;"></div>
+      <div class="draggable"
+         style="left: 300px; top: 100px;background-color: green;"></div>
+   </div>
+
+   <script>
+      let show = document.getElementById("show");
+      document.addEventListener('DOMContentLoaded', function () {
+         const draggableElements = document.querySelectorAll('.draggable');
+         let activeElement = null;
+         let offsetX = 0;
+         let offsetY = 0;
+
+         draggableElements.forEach(elem => {
+            elem.addEventListener('mousedown', function (e) {
+               activeElement = e.target;
+               offsetX = e.clientX - activeElement.getBoundingClientRect().left;
+               offsetY = e.clientY - activeElement.getBoundingClientRect().top;
+               document.addEventListener('mousemove', onMouseMove);
+            });
+         });
+
+         function onMouseMove(e) {
+            if (!activeElement) return;
+            activeElement.style.left = e.clientX - offsetX + 'px';
+            activeElement.style.top = e.clientY - offsetY + 'px';
+         }
+
+         document.addEventListener('mouseup', function () {
+            if (activeElement) {
+               document.removeEventListener('mousemove', onMouseMove);
+               activeElement = null;
+            }
+         });
+      });
+   </script>
+
+</body>
+
+</html>

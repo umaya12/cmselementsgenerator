@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .container {
+         width: 220px;
+         height: 150px;
+         border: solid 2px #000;
+         margin: 1rem auto;
+      }
+
+      .logo {
+         width: 150px;
+         cursor: pointer;
+      }
+   </style>
+</head>
+
+<body>
+
+
+   <div class="container"
+      id="container">
+
+   </div>
+
+   <img id="logo"
+      draggable="true"
+      class="logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/ZDF_logo%21_Logo_2021.svg/800px-ZDF_logo%21_Logo_2021.svg.png"
+      alt="">
+
+
+   <script>
+      let container = document.getElementById("container")
+      let logo = document.getElementById("logo")
+
+      logo.ondragstart = () => {
+         logo.style.opacity = 0.1;
+      }
+      logo.ondragend = () => {
+         logo.style.opacity = 1;
+      }
+
+      container.ondragover = function (ev) {
+         ev.preventDefault();
+         container.style.background = "red";
+      }
+      container.ondragleave = () => {
+         container.style.background = "white";
+      }
+      container.ondrop = function (ev) {
+         ev.target.appendChild(logo);
+         container.append(logo)
+      }
+
+   </script>
+
+</body>
+
+</html>

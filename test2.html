@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   * {
+      margin: 1rem;
+      padding: 1rem;
+   }
+
+   .box {
+      background-color: red;
+
+      width: 77px;
+      height: 30px;
+      cursor: pointer;
+   }
+
+   .box:nth-child(odd) {
+      background-color: blue;
+
+   }
+</style>
+
+<body>
+
+   <p draggable="true"
+      class="box">item1</p>
+   <p draggable="true"
+      class="box">item2</p>
+   <p draggable="true"
+      class="box">item3</p>
+   <p draggable="true"
+      class="box">item4</p>
+
+
+
+   <script>
+      let boxes = document.querySelectorAll(".box");
+      boxes.forEach((info) => {
+         info.addEventListener("dragstart", function () {
+            console.log("dragstart");
+
+         })
+         info.addEventListener("dragend", function () {
+            console.log("dragend");
+         })
+         info.addEventListener("dragenter", function () {
+            console.log("dragenter");
+
+         })
+         info.addEventListener("dragend", function () {
+            console.log("dragleave");
+         })
+      })
+
+   </script>
+</body>
+
+</html>

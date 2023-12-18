@@ -1,0 +1,59 @@
+
+             قم بجلب فقط مسار المجلدات , بدون الملفات التي لها لاحقة
+            يعني اذا عندك مسار باخره ملف من نوع معين , فلا تجلب لي الملف , اجلب لي فقط المجلدات
+            rootDir/src/index.js
+            هنا سيتم استثناء الـ index.js
+            $dir = dirname($path);
+------------------------
+       Überprüft, ob das Verzeichnis existiert. Falls nicht, wird es erstellt.
+فحص ا\ا كان @المجلد @ مووجود او لا
+!is_dir($dir)
+---------------------
+لانشاء الـ @ المجلدات @ حصراً
+                 mkdir($dir, 0777, true);
+--------------------------
+لانشاء  الملفات ذات اللواحق المختلفة و الكتابة فيها
+            file_put_contents($temp,"content");
+
+------------------CSS Bootstrap ---------
+form-check-input
+form-select
+form-control
+
+ ---------------------
+لتغيير لاحقة السيرفس
+اكتب الservices.yaml
+imports:
+    - { resource: services.xml }
+
+و انشأ ملف
+services.xml
+هيك رح يكون شكله
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="output_ordner" type="string">%kernel.project_dir%/public/output</parameter>
+    </parameters>
+
+    <services>
+        <!-- Default configuration -->
+        <defaults autowire="true" autoconfigure="true" />
+
+        <!-- Services in src/ -->
+        <prototype namespace="App\" resource="../src/*">
+            <exclude>../src/DependencyInjection/</exclude>
+            <exclude>../src/Entity/</exclude>
+            <exclude>../src/Kernel.php</exclude>
+        </prototype>
+
+        <!-- Weitere Service-Definitionen können hier hinzugefügt werden -->
+    </services>
+</container>
+
+
+--------------------------------

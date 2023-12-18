@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestingController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<body>
+
+		<div class="container">
+			<button id="add" class="btn btn-info">
+				+
+			</button>
+			<form id="form" class="m-5">
+				<div id="formContainer"></div>
+
+				<input type="submit" value="senden">
+			</form>
+
+		</div>
+
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+		<script>
+			let rowCount = 0; // Zähler für die Anzahl der hinzugefügten Zeilen
+
+const formContainer = document.getElementById("formContainer");
+const addBtn = document.getElementById("add");
+addBtn.addEventListener("click", () => {
+rowCount++;
+const newRow = getNewRow(rowCount);
+formContainer.innerHTML += newRow;
+});
+
+function getNewRow(count) {
+return `
+        <div class="row">
+            <div class="col">
+                <label class="form-label">Name des Form in DB</label>
+                <input type="text" class="form-control" name="rows[${count}][name]" placeholder="src image">
+            </div>
+            <div class="col">
+                <label class="form-label">Type</label>
+                <select name="rows[${count}][type]" class="form-select">
+                    <option value="video">Video</option>
+                    <option value="image">Image</option>
+                    <option value="text">Text</option>
+                    <option value="number">Number</option>
+                    <option value="color">Color</option>
+                    <option value="select">Select</option>
+                    <option value="radio">radio</option>
+                </select>
+            </div>
+            <div class="col">
+                <label class="form-label">Required</label> <br>
+                <input type="checkbox" name="rows[${count}][required]" class="form-check-input" value="true">
+            </div>
+        </div>
+    `;
+}
+
+const form = document.getElementById("form");
+form.addEventListener("submit", (e) => { // e.preventDefault();
+let formData = new FormData(form);
+
+formData.forEach((value, key) => {
+console.log(key + ': ' + value);
+});
+
+let plainObject = Object.fromEntries(formData.entries());
+console.log(plainObject);
+
+
+// Senden der FormData an den Server
+fetch("{{ path('app_testing') }}", {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: formData
+}).then(response => response.json()).then(data => {
+console.log('Erfolg:', data);
+}).catch((error) => {
+console.error('Fehler:', error);
+});
+
+});
+		</script>
+
+	</body>
+{% endblock %}
