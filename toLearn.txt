@@ -57,3 +57,42 @@ services.xml
 
 
 --------------------------------
+Wenn du schon composer.json hast, und du willst ist installieren
+
+composer update
+in verzeichniss, dass COmposer enthält
+-------------------
+Fehler
+
+Installing dependencies from lock file (including require-dev)
+Verifying lock file contents can be installed on current platform.
+Your lock file does not contain a compatible set of packages. Please run composer update.
+
+  Problem 1
+    - laminas/laminas-code is locked to version 4.7.1 and an update of this package was not requested.
+    - laminas/laminas-code 4.7.1 requires php >=7.4, <8.2 -> your php version (8.2.4) does not satisfy that requirement.
+  Problem 2
+    - laminas/laminas-code 4.7.1 requires php >=7.4, <8.2 -> your php version (8.2.4) does not satisfy that requirement.
+    - friendsofphp/proxy-manager-lts v1.0.16 requires laminas/laminas-code ~3.4.1|^4.0 -> satisfiable by laminas/laminas-code[4.7.1].
+    - friendsofphp/proxy-manager-lts is locked to version v1.0.16 and an update of this package was not requested.
+einfach das Befehl
+
+composer update laminas/laminas-code --with-dependencies
+
+----------------------------------
+
+Fehler
+
+"of method "__construct()" is type-hinted "array", you should configure its value explicitly" site:stackoverflow.com
+
+المشكلة داخل الservice.yaml
+
+https://stackoverflow.com/questions/66902535/move-configuration-from-service-yaml-to-another-file-in-symfony5
+داخل الـ app
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Service/HierDeinService.php' # HIER Kannst dein Service hinzufügen
+            - '../src/DependencyInjection/'
+
+

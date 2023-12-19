@@ -1,35 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" ?>
 
-<!-- services.xml -->
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services
-    http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!-- Use parameters for application configuration -->
+    <!-- Parameterdefinitionen -->
     <parameters>
         <parameter key="output_folder" type="string">%kernel.project_dir%/public/output</parameter>
     </parameters>
 
+    <!-- Services -->
     <services>
-        <!-- Default configuration for services in this file -->
-        <defaults autowire="true" autoconfigure="true" />
+        <!-- Default-Konfiguration für alle Services -->
+        <defaults autowire="true" autoconfigure="true"/>
 
-        <!-- Service Definitions -->
-        <service id="App\Service\CreateMainJs">
-            <tag name="app.file_creator"/>
+        <!-- Spezifische Services -->
+        <service id="App\Service\FileCreationService" public="true">
+            <argument type="collection">
+                <argument type="service" id="App\Service\CreateMainJs"/>
+                <argument type="service" id="App\Service\CreateTwigDatei"/>
+            </argument>
+
         </service>
 
-        <service id="App\Service\FileCreationService">
-            <argument type="service" id="!tagged_iterator app.file_creator"/>
+        <service id="App\Service\CreateMainJs" public="true"/>
+        <service id="App\Service\CreateTwigDatei" public="true"/>
+        <service id="App\Service\Structure" public="true">
+            <argument key="$output_folder">%output_folder%</argument>
+
         </service>
-
-        <!-- Makes classes in src/ available to be used as services -->
-        <prototype namespace="App\" resource="../src/" exclude="../src/{DependencyInjection,Entity,Kernel.php}"/>
-
-        <!-- Add more service definitions when explicit configuration is needed -->
+        <!-- Automatische Service-Erkennung für Klassen im src/-Verzeichnis -->
+        <prototype namespace="App\" resource="../src/*">
+            <exclude>../src/DependencyInjection/</exclude>
+            <exclude>../src/Entity/</exclude>
+            <exclude>../src/Kernel.php</exclude>
+            <exclude>../src/Service/FileCreationService.php</exclude>
+            <!-- Fügen Sie weitere Ausschlüsse hinzu, falls notwendig -->
+        </prototype>
     </services>
-
-
-
 </container>

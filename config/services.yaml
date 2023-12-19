@@ -3,60 +3,43 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
-parameters:
-    output_folder: "%kernel.project_dir%/public/output"
+#parameters:
+#    output_folder: "%kernel.project_dir%/public/output"
+#
+imports:
+    - { resource: services.xml }
 
-services:
-    App\Service\FileCreationService:
-        arguments:
-            $fileCreators:
-                - '@App\Service\CreateMainJs'
-                # Fügen Sie hier weitere FileCreator-Service-Referenzen hinzu
+#services:
+#    App\Service\FileCreationService:
+#        arguments:
+#            $fileCreators:
+#                - '@App\Service\CreateMainJs'
+#                - '@App\Service\CreateTwigDatei'
 
     # default configuration for services in *this* file
-    _defaults:
-        autowire: true # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-    App\Service\CreateMainJs: ~
+#    _defaults:
+#        autowire: true # Automatically injects dependencies in your services.
+#        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+#    App\Service\CreateMainJs: ~
+#    App\Service\CreateTwigDatei: ~
 
 
-    # _instanceof:
-    # services whose classes are instances of CustomInterface will be tagged automatically
-    # App\Service\FileCreatorInterface:
-    #     tags: ['app.file_creator']
-
-    # App\Handler\One:
-    #     tags: ['app.handler']
-
-    # App\Handler\Two:
-    #     tags: ['app.handler']
-
-    # App\HandlerCollection:
-    #     # inject all services tagged with app.handler as first argument
-    # arguments:
-    #         - !tagged_iterator app.handler
-
-    # App\Service\HtmlFileCreator:
-    #     tags: ['app.file_creator']
-
-    # App\Service\JsonFileCreator:
-    #     tags: ['app.file_creator']
-
-    # App\Service\FolderStructureService:
-    #     arguments:
-    #                 - !tagged_iterator app.file_creator
-    # $fileCreators: !tagged_iterator 'app.file_creator'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: "../src/"
-        exclude:
-            - "../src/DependencyInjection/"
-            - "../src/Entity/"
-            - "../src/Kernel.php"
+#    App\:
+#        resource: "../src/"
+#        exclude:
+#            - "../src/DependencyInjection/"
+#            - "../src/Entity/"
+#            - "../src/Kernel.php"
+#            - "../src/Service/FileCreationService.php"
+#    App\:
+#        resource: '../src/'
+#        exclude:
+#            - '../src/Service/CustomService.php' # ADD THIS
+#            - '../src/DependencyInjection/'
+#            - # the rest of the default excludes
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-# imports:
-#     - { resource: services.xml }
