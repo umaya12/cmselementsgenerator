@@ -1,7 +1,7 @@
 <?php
 namespace App\Service;
 
-class Structure{
+class CmsElementFolderStructure{
     private $outputFolder;
 
     public function __construct(string $output_folder)

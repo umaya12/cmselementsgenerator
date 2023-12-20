@@ -1,10 +1,10 @@
 <?php
-// src/Service/FileCreationService.php
+// src/Service/CmsElementFileCreation.php.php
 namespace App\Service;
 
 use App\Interface\FileCreatorInterface;
 
-class FileCreationService
+class CmsElementFileCreation
 {
     private $fileCreators;
 

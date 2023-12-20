@@ -6,13 +6,15 @@
 {% block body %}
 
 
+
 	<div class="container">
+
+
+
 		<ul class="list-group m-5">
-
-			{% for key,value in controller_name  %}
-
-				<li class="list-group-item {%if value=="Verzeichnis existiert bereits" %}list-group-item-danger {% else %}list-group-item-success  {% endif %}">
-				<small>{{key}} </small>
+			{% for key,value in createFolders %}
+				<li class="list-group-item {% if value=="Verzeichnis existiert bereits" %}list-group-item-danger {% else %}list-group-item-success  {% endif %}">
+					<small>{{ key }} </small>
 
 				</li>
 
@@ -20,25 +22,5 @@
 
 		</ul>
 
-
-		<pre>
-
-
-</pre>
-		{# {{ dump(controller_name) }} #}
-
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>
-					<a href="{{ 'C:/xampp/htdocs/cms-generator/src/Controller/Test2Controller.php'|file_link(0) }}">src/Controller/Test2Controller.php</a>
-				</code>
-			</li>
-			<li>Your template at
-				<code>
-					<a href="{{ 'C:/xampp/htdocs/cms-generator/templates/test2/index.html.twig'|file_link(0) }}">templates/test2/index.html.twig</a>
-				</code>
-			</li>
-		</ul>
 	</div>
 {% endblock %}

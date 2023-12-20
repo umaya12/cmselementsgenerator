@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\CmsElementFilesContent;
 
 use App\Interface\FileCreatorInterface;
 

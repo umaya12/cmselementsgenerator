@@ -18,26 +18,22 @@
         <!-- Spezifische Services -->
         <service id="App\Service\FileCreationService" public="true">
             <argument type="collection">
-                <argument type="service" id="App\Service\CreateMainJs"/>
-                <argument type="service" id="App\Service\CreateTwigDatei"/>
+                <argument type="service" id="App\Service\CmsElementFilesContent\CreateMainJs"/>
+                <argument type="service" id="App\Service\CmsElementFilesContent\CreateTwigDatei"/>
             </argument>
-
         </service>
-
-        <service id="App\Service\CreateMainJs" public="true"/>
-        <service id="App\Service\CreateTwigDatei" public="true"/>
-        <service id="App\Service\Structure" public="true">
+        <service id="App\Service\CmsElementFilesContent\CreateMainJs" public="true"/>
+        <service id="App\Service\CmsElementFilesContent\CreateTwigDatei" public="true"/>
+        <service id="App\Service\CmsElementFolderStructure" public="true">
             <argument key="$output_folder" type="string">%output_folder%</argument>
         </service>
 
-        <!-- Automatische Service-Erkennung für Klassen im src/-Verzeichnis -->
         <prototype namespace="App\" resource="../src/*">
             <exclude>../src/DependencyInjection/</exclude>
             <exclude>../src/Entity/</exclude>
             <exclude>../src/Kernel.php</exclude>
-            <exclude>../src/Service/FileCreationService.php</exclude>
-            <exclude>../src/Service/Structure.php</exclude>
-            <!-- Fügen Sie weitere Ausschlüsse hinzu, falls notwendig -->
+            <exclude>../src/Service/CmsElementFileCreation.php</exclude>
+            <exclude>../src/Service/CmsElementFolderStructure.php</exclude>
         </prototype>
     </services>
 </container>

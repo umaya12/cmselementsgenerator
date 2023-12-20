@@ -3,7 +3,7 @@ namespace App\Service;
 
 use Psr\Log\LoggerInterface;
 
-class CmsElementFolderStructure
+class CmsElementFolderCreation
 {
    private LoggerInterface $logger;
 

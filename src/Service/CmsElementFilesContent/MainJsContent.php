@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Content;
+namespace App\Service\CmsElementFilesContent;
 
 class MainJsContent
 {

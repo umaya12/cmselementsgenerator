@@ -11,129 +11,271 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous">
    <style>
+      .point {
+         width: 40px;
+         height: 40px;
+         border-radius: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         color: #fff;
+         user-select: none;
+         background-color: #ccc;
+      }
 
+
+      .tabs {
+
+         transition: all;
+         position: absolute;
+         left: -800px;
+         top: 0;
+      }
+
+      .show-tabs {
+         opacity: 1;
+         visibility: visible;
+         position: absolute;
+         left: 0;
+         top: 0;
+      }
+
+      /* .form-container {
+         display: flex;
+         flex-direction: column;
+      }
+
+      .form {
+         border-radius: 1rem;
+         box-shadow: 1px 1px 4px 1px #ccc;
+         padding: 1rem;
+         position: relative;
+         flex: 90%;
+      }
+
+      .button-container {
+         flex: 10%;
+         display: flex;
+         justify-content: center;
+      }
+
+      .tabs-container {
+         position: relative;
+         background-color: green;
+      }
+
+
+
+      #send {
+         display: none;
+      } */
    </style>
 </head>
 
 <body>
 
-   <div class="container m-5">
+   <div class="container">
+      <div class="form-container">
 
-      <form action=""
-         class="form">
+         <form class="form">
+            <div class="nav d-flex justify-content-between w-25 align-items-center"
+               id="nav-tab"
+               role="tablist">
 
-         <div style="display: none;" class="tabme">
-            <div class="form-group">
-               <label for="">Name</label>
-               <input type="text"
-                  class="form-control">
+               <div class="point bg-info m-1 p-1 rounded-circle"> 1 </div>
+               <div class="point  m-1 p-1 rounded-circle"> 2 </div>
+               <div class="point  m-1 p-1 rounded-circle"> 3 </div>
+               <div class="point  m-1 p-1 rounded-circle"> 4 </div>
+
             </div>
-            <div class="form-group">
-               <label for="">LastName</label>
-               <input type="text"
-                  class="form-control">
+
+            <div class="tabs-container">
+
+               <div class="tabs">
+                  <h2>Essential Infos</h2>
+                  <div class="form-group">
+                     <label for="">Name</label>
+                     <input type="text"
+                        class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="">LastName</label>
+                     <input type="text"
+                        class="form-control">
+                  </div>
+               </div>
+
+               <div class="tabs">
+                  <h2>Fields Infos</h2>
+
+                  <div class="form-group">
+                     <label for="">Adress</label>
+                     <input type="text"
+                        class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="">Ort</label>
+                     <input type="text"
+                        class="form-control">
+                  </div>
+               </div>
+
+               <div class="tabs">
+                  <h2>Hoppys</h2>
+
+                  <div class="form-group">
+                     <label for="">Tel</label>
+                     <input type="text"
+                        class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="">Email</label>
+                     <input type="text"
+                        class="form-control">
+                  </div>
+               </div>
+               <div class="tabs">
+                  <h2>Hoppys</h2>
+
+                  <div class="form-group">
+                     <label for="">Hoppy</label>
+                     <input type="text"
+                        class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="">Anmerkung</label>
+                     <textarea name=""
+                        id=""
+                        cols="30"
+                        rows="3"
+                        class="form-control">
+            </textarea>
+                  </div>
+               </div>
             </div>
-         </div>
 
 
-         <div style="display: none;"  class="tabme">
-            <div class="form-group">
-               <label for="">Adress</label>
-               <input type="text"
-                  class="form-control">
-            </div>
-            <div class="form-group">
-               <label for="">Ort</label>
-               <input type="text"
-                  class="form-control">
-            </div>
-         </div>
+         </form>
 
-
-         <div style="display: none;"  class="tabme">
-            <div class="form-group">
-               <label for="">Tel</label>
-               <input type="text"
-                  class="form-control">
-            </div>
-            <div class="form-group">
-               <label for="">Email</label>
-               <input type="text"
-                  class="form-control">
-            </div>
-         </div>
-
-         <div style="display: none;"  class="tabme">
-            <div class="form-group">
-               <label for="">Hoppy</label>
-               <input type="text"
-                  class="form-control">
-            </div>
-            <div class="form-group">
-               <label for="">Anmerkung</label>
-               <textarea name=""
-                  id=""
-                  cols="30"
-                  rows="3"
-                  class="form-control">
-                  </textarea>
-            </div>
-         </div>
-
-         <div class="row mt-5">
-            <div class="col">
-               <button type="button" id="prev"
+         <div class="row py-4 justify-content-between ">
+            <div class="col-auto">
+               <button type="button"
+                  id="prev"
                   class="btn btn-danger"> Prevers</button>
             </div>
-            <div class="col">
+            <div class="col-auto">
                <button id="send"
                   class="btn btn-success"
                   type="submit"> Senden</button>
             </div>
 
-            <div class="col">
-               <button  type="button" class="btn btn-info"
+            <div class="col-auto">
+               <button type="button"
+                  class="btn btn-info"
                   id="next"> Next</button>
             </div>
 
 
 
 
-
-
          </div>
 
-      </form>
-
+      </div>
 
 
    </div>
 
+
+
+
+
    <script>
 
-    let tabs = document.querySelectorAll(".tabme");
-    let next = document.querySelector("#next");
-    let prev = document.querySelector("#prev");
-    let currentTab = 0; // Corrected variable name
+      let tabs = document.querySelectorAll(".tabs");
+      let navi=document.querySelectorAll(".point")
+      let next = document.querySelector("#next");
+      let prev = document.querySelector("#prev");
+      let submit = document.querySelector("#send");
+      let currentTab = 0; // Corrected variable name
 
-    tabs[currentTab].style.display = ""; // Initially show the first tab
+      //  tabs[currentTab].style.display = ""; // Initially show the first tab
 
-    next.addEventListener("click", () => {
-        if (currentTab < tabs.length - 1) {
-            tabs[currentTab].style.display = "none";
+      //  next.addEventListener("click", () => {
+      //      if (currentTab < tabs.length - 1) {
+      //          tabs[currentTab].style.display = "none";
+      //          currentTab++;
+      //          tabs[currentTab].style.display = "";
+      //      }
+      //  });
+
+      //  prev.addEventListener("click", () => {
+      //      if (currentTab > 0) {
+      //          tabs[currentTab].style.display = "none";
+      //          currentTab--;
+      //          tabs[currentTab].style.display = "block";
+      //      }
+      //  });
+
+
+      tabs[currentTab].classList.add("show-tabs")
+
+
+      next.addEventListener("click", () => {
+         if (currentTab < tabs.length - 1) {
+            // tabs[currentTab].style.display = "none"
+            tabs[currentTab].classList.remove("show-tabs")
             currentTab++;
-            tabs[currentTab].style.display = "";
-        }
-    });
+            tabs[currentTab].classList.add("show-tabs")
+            navi[currentTab].classList.add("bg-info")
 
-    prev.addEventListener("click", () => {
-        if (currentTab > 0) {
-            tabs[currentTab].style.display = "none";
+            prev.style.display = "block"
+
+            if (currentTab == tabs.length - 1) {
+               submit.style.display = "block"
+               next.style.display = "none"
+
+
+            }
+
+         }
+         console.log(currentTab)
+      })
+      prev.addEventListener('click', () => {
+
+         if (currentTab > 0) {
+            tabs[currentTab].classList.remove("show-tabs")
+            navi[currentTab].classList.remove("bg-info")
+
             currentTab--;
-            tabs[currentTab].style.display = "block";
-        }
-    });
-</script>
+            tabs[currentTab].classList.add("show-tabs")
+            next.style.display = "block"
+            submit.style.display = "none"
+
+
+            if (currentTab == 0) {
+               prev.style.display = "none"
+               next.style.display = "block"
+               console.log(currentTab)
+            }
+         }
+
+
+
+      })
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </script>
 
 
 </body>
