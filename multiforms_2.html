@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous">
+   <style>
+
+   </style>
+</head>
+
+<body>
+
+   <div class="container m-5">
+
+      <form action=""
+         class="form">
+
+         <div style="display: none;" class="tabme">
+            <div class="form-group">
+               <label for="">Name</label>
+               <input type="text"
+                  class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="">LastName</label>
+               <input type="text"
+                  class="form-control">
+            </div>
+         </div>
+
+
+         <div style="display: none;"  class="tabme">
+            <div class="form-group">
+               <label for="">Adress</label>
+               <input type="text"
+                  class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="">Ort</label>
+               <input type="text"
+                  class="form-control">
+            </div>
+         </div>
+
+
+         <div style="display: none;"  class="tabme">
+            <div class="form-group">
+               <label for="">Tel</label>
+               <input type="text"
+                  class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="">Email</label>
+               <input type="text"
+                  class="form-control">
+            </div>
+         </div>
+
+         <div style="display: none;"  class="tabme">
+            <div class="form-group">
+               <label for="">Hoppy</label>
+               <input type="text"
+                  class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="">Anmerkung</label>
+               <textarea name=""
+                  id=""
+                  cols="30"
+                  rows="3"
+                  class="form-control">
+                  </textarea>
+            </div>
+         </div>
+
+         <div class="row mt-5">
+            <div class="col">
+               <button type="button" id="prev"
+                  class="btn btn-danger"> Prevers</button>
+            </div>
+            <div class="col">
+               <button id="send"
+                  class="btn btn-success"
+                  type="submit"> Senden</button>
+            </div>
+
+            <div class="col">
+               <button  type="button" class="btn btn-info"
+                  id="next"> Next</button>
+            </div>
+
+
+
+
+
+
+         </div>
+
+      </form>
+
+
+
+   </div>
+
+   <script>
+
+    let tabs = document.querySelectorAll(".tabme");
+    let next = document.querySelector("#next");
+    let prev = document.querySelector("#prev");
+    let currentTab = 0; // Corrected variable name
+
+    tabs[currentTab].style.display = ""; // Initially show the first tab
+
+    next.addEventListener("click", () => {
+        if (currentTab < tabs.length - 1) {
+            tabs[currentTab].style.display = "none";
+            currentTab++;
+            tabs[currentTab].style.display = "";
+        }
+    });
+
+    prev.addEventListener("click", () => {
+        if (currentTab > 0) {
+            tabs[currentTab].style.display = "none";
+            currentTab--;
+            tabs[currentTab].style.display = "block";
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

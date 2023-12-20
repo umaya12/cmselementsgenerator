@@ -96,3 +96,51 @@ https://stackoverflow.com/questions/66902535/move-configuration-from-service-yam
             - '../src/DependencyInjection/'
 
 
+------------------------
+https://symfony.com/doc/4.1/service_container/parameters.html
+how to access an application parameters from a service in symfony
+ اسم العملية تبع السيرفس
+ Parameterinjektion
+ يعني حقنت باراكيتر بملف السيرفس
+
+كيفية استخدام باراميتر service.yaml او xml  داخل ملفات السيرفس او اي ملف اخر
+
+فرضا ليدينا الباراميتر التالي
+parameters:
+   output_folder: "%kernel.project_dir%/public/output"
+
+
+اول شي مرر الباراميتر لكلاس السيرفس الذي تريده
+yaml
+
+services:
+    App\Service\KlassName:
+        arguments:
+            $output_folder: '%output_folder%'
+
+xml في حال
+Cannot autowire service "App\Service\Structure": argument "$output_folder" of method "__construct()" is type-hinted "string", you should configure its value explicitly.
+ في حال طلعلك هذا الخطأ
+
+
+        <service id="App\Service\Structure" public="true">
+            <argument key="$output_folder" type="string">%output_folder%</argument>
+        </service>
+        <prototype namespace="App\" resource="../src/*">
+
+            <exclude>../src/Service/Structure.php</exclude>
+
+        </prototype>
+
+
+
+
+
+
+داخل كلاس السيرفس   يجب عمل كونستراكت
+    private $output_folder;
+
+    public function __construct(string $output_folder)
+    {
+        $this->output_folder = $output_folder;
+    }

@@ -18,7 +18,7 @@ class FileCreationService
         */
         $this->fileCreators = $fileCreators;
 //        $this->fileCreators =[['App\Service\CreateMainJs'],['App\Service\CreateMainJs']];
-        print_r($fileCreators);
+        // print_r($fileCreators);
 //        exit;
     }
 

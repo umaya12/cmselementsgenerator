@@ -27,15 +27,16 @@
         <service id="App\Service\CreateMainJs" public="true"/>
         <service id="App\Service\CreateTwigDatei" public="true"/>
         <service id="App\Service\Structure" public="true">
-            <argument key="$output_folder">%output_folder%</argument>
-
+            <argument key="$output_folder" type="string">%output_folder%</argument>
         </service>
+
         <!-- Automatische Service-Erkennung für Klassen im src/-Verzeichnis -->
         <prototype namespace="App\" resource="../src/*">
             <exclude>../src/DependencyInjection/</exclude>
             <exclude>../src/Entity/</exclude>
             <exclude>../src/Kernel.php</exclude>
             <exclude>../src/Service/FileCreationService.php</exclude>
+            <exclude>../src/Service/Structure.php</exclude>
             <!-- Fügen Sie weitere Ausschlüsse hinzu, falls notwendig -->
         </prototype>
     </services>
