@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Service\FileStructureService;
-use App\Service\CmsElementFolderStructure;
+use App\Service\FolderStructure;
+use App\Service\FolderCreation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

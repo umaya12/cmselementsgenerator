@@ -1,6 +1,8 @@
+:root{
+  --mainColor:"#0DCAF0";
+}
 
 @import "~bootstrap/scss/bootstrap";
-
+@import "create-cms-element-form";
 body {
-    background-color: lightgray;
 }

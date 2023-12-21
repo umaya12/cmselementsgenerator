@@ -24,7 +24,7 @@
         </service>
         <service id="App\Service\CmsElementFilesContent\CreateMainJs" public="true"/>
         <service id="App\Service\CmsElementFilesContent\CreateTwigDatei" public="true"/>
-        <service id="App\Service\CmsElementFolderStructure" public="true">
+        <service id="App\Service\FolderStructure" public="true">
             <argument key="$output_folder" type="string">%output_folder%</argument>
         </service>
 
@@ -33,7 +33,7 @@
             <exclude>../src/Entity/</exclude>
             <exclude>../src/Kernel.php</exclude>
             <exclude>../src/Service/CmsElementFileCreation.php</exclude>
-            <exclude>../src/Service/CmsElementFolderStructure.php</exclude>
+            <exclude>../src/Service/FolderStructure.php</exclude>
         </prototype>
     </services>
 </container>

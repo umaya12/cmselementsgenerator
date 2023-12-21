@@ -11,6 +11,10 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous">
    <style>
+      .form-container {
+         width: 60vw;
+      }
+
       .point {
          width: 40px;
          height: 40px;
@@ -21,29 +25,80 @@
          color: #fff;
          user-select: none;
          background-color: #ccc;
+         position: relative;
+         margin-left: 100px;
+
+      }
+
+      .point:not(:first-of-type)::before {
+         /* .point::before{ */
+         content: "";
+         background-color: #ccc;
+         width: 120px;
+         height: 5px;
+         position: absolute;
+         right: 50%;
+         top: 50%;
+         transform: translateY(-50%);
+         z-index: -1;
+
+      }
+
+      .pointme:not(:first-of-type)::before {
+         content: "";
+         background-color: #0DCAF0;
+         width: 120px;
+
+         height: 5px;
+         position: absolute;
+         right: 50%;
+         top: 50%;
+         transform: translateY(-50%);
+
+         z-index: -1;
+
+      }
+
+      .tabs-container {
+         position: relative;
+         width: 100%;
+
       }
 
 
       .tabs {
 
          transition: all;
-         position: absolute;
-         left: -800px;
-         top: 0;
+         display: none;
+
       }
 
       .show-tabs {
-         opacity: 1;
-         visibility: visible;
-         position: absolute;
-         left: 0;
-         top: 0;
+         display: block;
+
       }
 
-      /* .form-container {
-         display: flex;
-         flex-direction: column;
+      #send {
+         display: none;
       }
+
+      .form-control {
+         border: 1px solid #0DCAF0;
+      }
+
+      .form-control:focus {
+         border: 2px solid #0DCAF0;
+         box-shadow: 0 0 0 .25rem rgba(0, 225, 255, 0.22);
+      }
+
+      .headline-line {
+         border-left: 10px solid #0DCAF0;
+         padding-left: 1rem;
+      }
+
+
+      /*
+
 
       .form {
          border-radius: 1rem;
@@ -52,47 +107,38 @@
          position: relative;
          flex: 90%;
       }
-
       .button-container {
          flex: 10%;
          display: flex;
          justify-content: center;
       }
-
       .tabs-container {
          position: relative;
          background-color: green;
       }
-
-
-
-      #send {
-         display: none;
-      } */
+   */
    </style>
 </head>
 
 <body>
 
    <div class="container">
-      <div class="form-container">
+      <div class="form-container m-5 py-5">
 
-         <form class="form">
-            <div class="nav d-flex justify-content-between w-25 align-items-center"
+         <form class="form d-flex justify-content-center align-items-center flex-column">
+            <div class="nav d-flex align-items-center"
                id="nav-tab"
                role="tablist">
-
-               <div class="point bg-info m-1 p-1 rounded-circle"> 1 </div>
-               <div class="point  m-1 p-1 rounded-circle"> 2 </div>
-               <div class="point  m-1 p-1 rounded-circle"> 3 </div>
-               <div class="point  m-1 p-1 rounded-circle"> 4 </div>
-
+               <div class="point pointme bg-info  p-1 rounded-circle"> 1 </div>
+               <div class="point p-1 rounded-circle"> 2 </div>
+               <div class="point p-1 rounded-circle"> 3 </div>
+               <div class="point p-1 rounded-circle"> 4 </div>
             </div>
 
             <div class="tabs-container">
 
                <div class="tabs">
-                  <h2>Essential Infos</h2>
+                  <h2 class="headline-line">Essential Infos</h2>
                   <div class="form-group">
                      <label for="">Name</label>
                      <input type="text"
@@ -106,7 +152,7 @@
                </div>
 
                <div class="tabs">
-                  <h2>Fields Infos</h2>
+                  <h2 class="headline-line">Fields Infos</h2>
 
                   <div class="form-group">
                      <label for="">Adress</label>
@@ -121,7 +167,7 @@
                </div>
 
                <div class="tabs">
-                  <h2>Hoppys</h2>
+                  <h2 class="headline-line">Hoppys</h2>
 
                   <div class="form-group">
                      <label for="">Tel</label>
@@ -135,7 +181,7 @@
                   </div>
                </div>
                <div class="tabs">
-                  <h2>Hoppys</h2>
+                  <h2 class="headline-line">Hoppys</h2>
 
                   <div class="form-group">
                      <label for="">Hoppy</label>
@@ -148,31 +194,26 @@
                         id=""
                         cols="30"
                         rows="3"
-                        class="form-control">
-            </textarea>
+                        class="form-control"></textarea>
                   </div>
                </div>
             </div>
-
-
          </form>
 
-         <div class="row py-4 justify-content-between ">
+         <div class="row py-4 justify-content-between    ">
             <div class="col-auto">
                <button type="button"
                   id="prev"
-                  class="btn btn-danger"> Prevers</button>
-            </div>
-            <div class="col-auto">
-               <button id="send"
-                  class="btn btn-success"
-                  type="submit"> Senden</button>
+                  class="btn btn-secondary"> Prevers</button>
             </div>
 
             <div class="col-auto">
                <button type="button"
                   class="btn btn-info"
                   id="next"> Next</button>
+               <button id="send"
+                  class="btn btn-success"
+                  type="submit"> Senden</button>
             </div>
 
 
@@ -192,7 +233,7 @@
    <script>
 
       let tabs = document.querySelectorAll(".tabs");
-      let navi=document.querySelectorAll(".point")
+      let navi = document.querySelectorAll(".point")
       let next = document.querySelector("#next");
       let prev = document.querySelector("#prev");
       let submit = document.querySelector("#send");
@@ -217,9 +258,8 @@
       //  });
 
 
+      // tabs[currentTab].style.display="block"
       tabs[currentTab].classList.add("show-tabs")
-
-
       next.addEventListener("click", () => {
          if (currentTab < tabs.length - 1) {
             // tabs[currentTab].style.display = "none"
@@ -227,40 +267,31 @@
             currentTab++;
             tabs[currentTab].classList.add("show-tabs")
             navi[currentTab].classList.add("bg-info")
+            navi[currentTab].classList.add("pointme")
 
             prev.style.display = "block"
 
             if (currentTab == tabs.length - 1) {
                submit.style.display = "block"
                next.style.display = "none"
-
-
             }
-
          }
-         console.log(currentTab)
       })
       prev.addEventListener('click', () => {
 
          if (currentTab > 0) {
             tabs[currentTab].classList.remove("show-tabs")
             navi[currentTab].classList.remove("bg-info")
-
+            navi[currentTab].classList.remove("pointme")
             currentTab--;
             tabs[currentTab].classList.add("show-tabs")
             next.style.display = "block"
             submit.style.display = "none"
-
-
             if (currentTab == 0) {
                prev.style.display = "none"
                next.style.display = "block"
-               console.log(currentTab)
             }
          }
-
-
-
       })
 
 

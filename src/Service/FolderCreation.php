@@ -3,7 +3,7 @@ namespace App\Service;
 
 use Psr\Log\LoggerInterface;
 
-class CmsElementFolderCreation
+class FolderCreation
 {
    private LoggerInterface $logger;
 
@@ -18,7 +18,6 @@ class CmsElementFolderCreation
       foreach ($structure as $path) {
          $dir = dirname($path);
          if (!is_dir($dir)) {
-            ;
             mkdir($dir, 0777, true);
             $status[$path] = "Verzeichnis angelegt";
          } else {

@@ -144,3 +144,36 @@ Cannot autowire service "App\Service\Structure": argument "$output_folder" of me
     {
         $this->output_folder = $output_folder;
     }
+
+    -----------------------
+
+    .point:not(:first-of-type)::before {
+    content: "";
+
+}
+
+         .point:not(:first-of-type):not(:last-of-type)::before {
+            content: "";
+            background-color: #ccc;
+
+
+         }
+
+------Bootstrap--------
+
+Radio + checkbox =>
+parent "form-check"
+child "form-check-input"
+
+normal fields=>
+form-label
+form-control
+SELECT =>
+form-select
+
+
+--------scss-------------
+    .nav-point {
+      &.active-nav-point:not(:first-of-type)::before {
+      }
+    }
