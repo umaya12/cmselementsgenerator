@@ -17,8 +17,9 @@
 
 				<div class="tabs-container">
 
+					{# Plugin Details #}
 					<div class="tabs show-tab">
-						<h2 class="headline-line">Plugin Details</h2>
+						<h2 class="headline-line mb-5">Plugin Details</h2>
 
 
 						<div class="mb-3 row">
@@ -43,50 +44,51 @@
 						</div>
 
 
-						<div class="mb-3">
-							<label class="form-label" for="pluginLabelDE">Plugin Label (DE)</label>
-							<input type="text" name="pluginLabelDE" id="pluginLabelDE"
-									 class="form-control">
-						</div>
-
-
-						<div class="mb-3">
-							<label class="form-label" for="pluginLabelEN">Plugin Label (EN)</label>
-							<input type="text" name="pluginLabelEN" id="pluginLabelEN"
-									 class="form-control">
+						<div class="row mb-3">
+							<div class="col-6">
+								<label class="form-label" for="pluginLabelDE">Plugin Label (DE)</label>
+								<input type="text" name="pluginLabelDE" id="pluginLabelDE"
+										 class="form-control">
+							</div>
+							<div class="col-6">
+								<label class="form-label" for="pluginLabelEN">Plugin Label (EN)</label>
+								<input type="text" name="pluginLabelEN" id="pluginLabelEN"
+										 class="form-control">
+							</div>
 						</div>
 
 
 					</div>
-
-
+					{#  CMS Element  #}
 					<div class="tabs">
-						<h2 class="headline-line">CMS Details</h2>
+						<h2 class="headline-line mb-5">CMS Element Details</h2>
 
+						{#    cms Element TechnicalName #}
 						<div class="mb-3">
-							<label class="form-label" for="cmsTechnicalName">CMS Technical Name</label>
-							<input type="text" name="cmsTechnicalName" id="cmsTechnicalName"
+							<label class="form-label" for="cmsElementTechnicalName">CMS Technical Name</label>
+							<input type="text" name="cmsElementTechnicalName" id="cmsElementTechnicalName"
 									 class="form-control">
 						</div>
-
+						{#   CMS Element label #}
 						<div class="mb-3 row">
 
 							<div class="col-6">
 
-								<label class="form-label" for="cmsElementLabelDE">CMS Element Label (DE)</label>
+								<label class="form-label" for="cmsElementLabelDE">Element Label (DE)</label>
 								<input type="text" name="cmsElementLabelDE" id="cmsElementLabelDE"
 										 class="form-control">
 							</div>
 
 							<div class="col-6">
 
-								<label class="form-label" for="cmsElementLabelEN">CMS Element Label (EN)</label>
+								<label class="form-label" for="cmsElementLabelEN">Element Label (EN)</label>
 								<input type="text" name="cmsElementLabelEN" id="cmsElementLabelEN"
 										 class="form-control">
 							</div>
 
 						</div>
 
+						{#   CMS Element Image #}
 						<div class="row mb-3">
 
 							<div class="col-8">
@@ -109,7 +111,7 @@
 
 						<div class="row mb-3">
 							<div class="col-8">
-								<label class="form-label" for="cms-component-image">CMS Component Image</label>
+								<label class="form-label" for="cms-component-image"> Component Image</label>
 								<input type="file" name="cmsComponentImage" id="cms-component-image"
 										 class="form-control">
 							</div>
@@ -118,47 +120,21 @@
 									default component
 									Image</label>
 
-
 								<div class="form-check">
 									<input type="checkbox" value="true" name="cmsDefaultComponentImage"
 											 id="cmsDefaultComponentImage"
 											 class="form-check-input float-right p-1">
 								</div>
-
-
 							</div>
 
 						</div>
 
-						<div class="mb-3">
-							<label class="form-label" for="cmsBlocksCategory">CMS block category</label>
-							<select type="file" name="cmsBlocksCategory" id="cmsBlocksCategory"
-									  class="form-select">
-								<option value="text-image">text-image</option>
-								<option value="text">text</option>
-								<option value="video">video</option>
-								<option value="image">image</option>
-							</select>
-						</div>
 
 					</div>
 
+					{#  CMS Element Flieds #}
 					<div class="tabs">
-						<h2 class="headline-line">CMS Element columns</h2>
-
-						<div class="form-group">
-							<label for="">Tel</label>
-							<input type="text"
-									 class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="">Email</label>
-							<input type="text"
-									 class="form-control">
-						</div>
-					</div>
-					<div class="tabs">
-						<h2 class="headline-line">Hoppys</h2>
+						<h2 class="headline-line mb-5">Hoppys</h2>
 
 						<div class="form-group">
 							<label for="">Hoppy</label>
@@ -172,6 +148,49 @@
 										 cols="30"
 										 rows="3"
 										 class="form-control"></textarea>
+						</div>
+
+					</div>
+
+					{#  CMS Blocks #}
+					<div class="tabs">
+						<h2 class="headline-line mb-5">CMS Blocks</h2>
+						{#    cms Block TechnicalName #}
+						<div class="mb-3">
+							<label class="form-label" for="cmsBlocksTechnicalName">Technical Name</label>
+							<input type="text" name="cmsBlocksTechnicalName" id="cmsBlocksTechnicalName"
+									 class="form-control">
+						</div>
+
+						{#   CMS Blocks label #}
+						<div class="mb-3 row">
+
+							<div class="col-6">
+
+								<label class="form-label" for="cmsBlocksLabelDE">Blocks Label (DE)</label>
+								<input type="text" name="cmsBlocksLabelDE" id="cmsBlocksLabelDE"
+										 class="form-control">
+							</div>
+
+							<div class="col-6">
+
+								<label class="form-label" for="cmsBlocksLabelEN">Blocks Label (EN)</label>
+								<input type="text" name="cmsBlocksLabelEN" id="cmsBlocksLabelEN"
+										 class="form-control">
+							</div>
+
+						</div>
+
+						{#    Blocks Category #}
+						<div class="mb-3">
+							<label class="form-label" for="cmsBlocksCategory">CMS block category</label>
+							<select type="file" name="cmsBlocksCategory" id="cmsBlocksCategory"
+									  class="form-select">
+								<option value="text-image">text-image</option>
+								<option value="text">text</option>
+								<option value="video">video</option>
+								<option value="image">image</option>
+							</select>
 						</div>
 						<div class="row py-4 justify-content-between">
 							<button id="send" class="btn btn-info btn-lg btn-block " type="submit">Senden</button>
