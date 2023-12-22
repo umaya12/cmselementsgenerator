@@ -16,18 +16,25 @@
         <defaults autowire="true" autoconfigure="true"/>
 
         <!-- Spezifische Services -->
-        <service id="App\Service\FileCreationService" public="true">
+        <service id="App\Service\CmsElementFileCreation" public="true">
             <argument type="collection">
-                <argument type="service" id="App\Service\CmsElementFilesContent\CreateMainJs"/>
-                <argument type="service" id="App\Service\CmsElementFilesContent\CreateTwigDatei"/>
+                <argument type="service" id="App\Service\CreatePluginIndexPhp"/>
+                <argument type="service" id="App\Service\CmsElementFilesContent\CreateComposerJson"/>
+                <argument type="service" id="App\Service\Blocks\BlockIndexJs"/>
+                <argument type="service" id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig"/>
             </argument>
         </service>
+
         <service id="App\Service\CmsElementFilesContent\CreateMainJs" public="true"/>
-        <service id="App\Service\CmsElementFilesContent\CreateTwigDatei" public="true"/>
+        <service id="App\Service\CreatePluginIndexPhp" public="true"/>
+        <service id="App\Service\CmsElementFilesContent\CreateComposerJson" public="true"/>
+        <service id="App\Service\Blocks\BlockIndexJs" public="true"/>
+        <service id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig" />
+                <!--XXXXXXXXXXXXXXXXXParameter Injection in Service XXXXXXXXXXXXXXXXXXXX-->
         <service id="App\Service\FolderStructure" public="true">
             <argument key="$output_folder" type="string">%output_folder%</argument>
         </service>
-
+                     <!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
         <prototype namespace="App\" resource="../src/*">
             <exclude>../src/DependencyInjection/</exclude>
             <exclude>../src/Entity/</exclude>

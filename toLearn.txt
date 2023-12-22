@@ -177,3 +177,30 @@ form-select
       &.active-nav-point:not(:first-of-type)::before {
       }
     }
+
+-------------Fehler--------
+Cannot autowire service "App\Controller\FormCreateCmsElementController": argument "$fileCreationService" of method "__construct()" references class "App\Service\CmsElementFileCreation" but no such service exists.
+
+العلة بالسيرفس
+اعمل حق للسيرفس و الملفات التي ضفتا للانتر فيس
+
+
+
+---------------JSOn--------------
+داخل الجسون يتم استدعاء متغير الـ Php ليس بالطريقة التالي
+"$pluginTechnicalName\\": "src/"
+
+ولكن بالطريقة التالية
+"{$pluginTechnicalName}\\": "src/"
+
+
+-------------
+تحويل محتوى الى جسون بشكل جميل
+
+        reutrn json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+
+
+
+
+
+

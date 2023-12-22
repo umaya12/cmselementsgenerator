@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\CmsElementFileCreation;
 use App\Service\FolderCreation;
 use App\Service\FolderStructure;
 use App\Service\FormDataManager;
@@ -16,7 +17,8 @@ class FormCreateCmsElementController extends AbstractController
     public function __construct(
         private FormDataManager $formDataManager,
         private FolderStructure $cmsElementStructure,
-        private FolderCreation $folderCreation
+        private FolderCreation $folderCreation,
+        private CmsElementFileCreation $fileCreationService,
     ) {
     }
 
@@ -29,13 +31,14 @@ class FormCreateCmsElementController extends AbstractController
         if (isset($pluginTechnicalName)) {
             $this->formDataManager->storeCmsElementFromData($cmsElementFormData);
             // get folder structor
-            $structure = $this->cmsElementStructure->getCmsElementStructure();
+            $structures = $this->cmsElementStructure->getCmsElementStructure();
             // create folder structor
-            $this->folderCreation->createStructure($structure);
+            $this->folderCreation->createStructure($structures);
+            foreach ($structures as $path) {
+                $this->fileCreationService->createFile($path);
+            }
 //            dump($structure);
-
         }
-
 //        exit;
         return $this->render('form_create_cms_element/index.html.twig', [
             'controller_name' => 'FormCreateCmsElementController',

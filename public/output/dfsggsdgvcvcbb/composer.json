@@ -1,0 +1,24 @@
+{
+    "name": "ap/cms-image-text",
+    "description": "cbxcbvcnvcncvn",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "343",
+    "authors": [
+        {
+            "name": "apollon GmbH+Co. KG"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "dfsggsdgvcvcbb\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "dfsggsdgvcvcbb\\dfsggsdgvcvcbb",
+        "label": {
+            "de-DE": "dsgdgsgPlugin Label (DE) ",
+            "en-GB": "Plugin Label (EN)"
+        }
+    }
+}
