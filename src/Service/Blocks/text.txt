@@ -1,0 +1,25 @@
+        $formData = $this->cmsFormDataManager->getCmsFormData();
+        $pluginTechnicalName = $formData['pluginTechnicalName'];
+        $version = $formData['version'];
+        $pluginDescription = $formData['pluginDescription'];
+        $pluginLabelDE = $formData['pluginLabelDE'];
+        $pluginLabelEN = $formData['pluginLabelEN'];
+
+
+pluginTechnicalName
+version
+pluginDescription
+pluginLabelDE
+pluginLabelEN
+cmsElementTechnicalName
+cmsElementLabelDE
+cmsElementLabelEN
+cmsPreviewImage
+cmsDefaultPreviewImage
+cmsComponentImage
+cmsDefaultComponentImage
+cmsBlocksTechnicalName
+cmsBlocksLabelDE
+cmsBlocksLabelEN
+cmsBlocksCategory
+

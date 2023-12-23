@@ -1,0 +1,24 @@
+{
+    "name": "ap/cms-image-text",
+    "description": "Plugin Description",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "2.3.3",
+    "authors": [
+        {
+            "name": "apollon GmbH+Co. KG"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Plugin Details\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Plugin Details\\Plugin Details",
+        "label": {
+            "de-DE": "Plugin Label (DE) ",
+            "en-GB": "Plugin Label (EN)"
+        }
+    }
+}

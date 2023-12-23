@@ -199,6 +199,26 @@ Cannot autowire service "App\Controller\FormCreateCmsElementController": argumen
 
         reutrn json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
+----------------------- "" '' ------------------
+
+
+/شكلة ممكن تواجعك في تعريف المتغيرات بين ال"" و هي انه داخل النص لا يجب ان يتم كتابة "" اخرى
+مثال
+
+         $content = '
+        <div class="sw-cms-block-$cmsBlocksTechnicalName">
+        ';
+الحل
+
+public function getContent($cmsBlocksTechnicalName)
+{
+    $content = "
+    <div class=\"sw-cms-block-{$cmsBlocksTechnicalName}\">
+    ";
+    return $content;
+}
+
+-----------------------------------------------
 
 
 
