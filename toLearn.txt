@@ -199,7 +199,7 @@ Cannot autowire service "App\Controller\FormCreateCmsElementController": argumen
 
         reutrn json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
------------------------ "" '' ------------------
+----------------------- "" '' -Doppelte Anführungszeichen -- Escape von doppelten Anführungszeichen im HTML-----------------
 
 
 /شكلة ممكن تواجعك في تعريف المتغيرات بين ال"" و هي انه داخل النص لا يجب ان يتم كتابة "" اخرى
@@ -219,8 +219,94 @@ public function getContent($cmsBlocksTechnicalName)
 }
 
 -----------------------------------------------
+Helper ===>
+يوجد بملف داخل Src
+// src/Helper/DeinHelperfilenameXXXX.php
+
+-Es wird nichts extends also einfach wie im Service
+- Es sollte in Services.xml registriert werden genau wie service.
+- Es wird wie pblich beim Service auch bei Helper mit Dependency Injection aufgerufen.
+
+Verwendung:
+
+Verwendung von Helpers
+URL-Erzeugung: Ein UrlHelper kann verwendet werden, um URLs zu generieren, z.B. $url = $urlHelper->generate('homepage');.
+Formatierung: Ein DateHelper könnte zum Formatieren von Datumsangaben eingesetzt werden, etwa $formattedDate = $dateHelper->format($date);.
+Benutzerinteraktion: Ein FlashMessageHelper hilft beim Anzeigen von Benachrichtigungen, z.B. $flashMessageHelper->add('Erfolgsmeldung');.
+Datenmanipulation: Ein ArrayHelper kann für Array-Operationen genutzt werden, wie $filteredArray = $arrayHelper->filter($array);.
+Template-Rendering: Ein TemplateHelper könnte zum Rendern von Templates verwendet werden, etwa $renderedTemplate = $templateHelper->render('templateName', $data);.
+
+Unterschiede zwischen Helpers und Services
+
+Helpers  für kleine Sachen, wie formatierung oder einfache sachen werden häufig in Views oder Templates verwendet, um spezifische, wiederkehrende Aufgaben zu erleichtern .
 
 
 
+Beispiel
+// src/Helper/GreetingHelper.php
+
+namespace App\Helper;
+
+class GreetingHelper
+{
+    public function getGreeting($name)
+    {
+        return "Hallo, " . $name . "!";
+    }
+}
+
+Services.xml
+# config/services.yaml
+
+services:
+    App\Helper\GreetingHelper: ~
 
 
+-----
+// src/Controller/MyController.php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Helper\GreetingHelper;
+
+class MyController extends AbstractController
+{
+    private $greetingHelper;
+
+    public function __construct(GreetingHelper $greetingHelper)
+    {
+        $this->greetingHelper = $greetingHelper;
+    }
+
+    public function someAction()
+    {
+        $greeting = $this->greetingHelper->getGreeting('Esraa');
+
+        // ...
+    }
+}
+
+--------------------Abkurzung------------------------
+
+split  to right
+ctrl+alt+->
+split to left
+ctrl+alt+ <-
+Maximize
+ctrl+alt+ oben
+normalize
+
+
+Stretch right
+
+Stretch left
+
+unsplit all
+
+change split orientioschn
+ctrl+alt+ unten
+
+
+
+-------------------

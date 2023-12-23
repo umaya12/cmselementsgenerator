@@ -14,7 +14,8 @@ class CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInte
 
     public function createFile(string $path): void
     {
-        $cmsBlocksTechnicalName = $this->cmsFormDataManager->getCmsFormData()["cmsBlocksTechnicalName"];
+        $formData = $this->cmsFormDataManager->getCmsFormData();
+        $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
         if (strpos($path, "cms-block-component-$cmsBlocksTechnicalName.html.twig")) {
             file_put_contents($path, $this->getContent($cmsBlocksTechnicalName));
         }
@@ -22,7 +23,7 @@ class CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInte
 
     public function getContent($cmsBlocksTechnicalName)
     {
-         $content = "
+        $content = "
             {% block element_ap_image_text %}
         <div class=\"sw-cms-block-$cmsBlocksTechnicalName\">
             <slot name=\"ApCmsImageText\"></slot>
