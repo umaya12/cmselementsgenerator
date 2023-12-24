@@ -44,6 +44,35 @@ class FormCreateCmsElementController extends AbstractController
             'controller_name' => 'FormCreateCmsElementController',
         ]);
     }
+
+    #[Route('/testemich/{cmsElementTechnicalName}', name: 'form_create_cms_element')]
+    public function convertToTwigTags($cmsElementTechnicalName)
+    {
+//        $data = "HalloIchBinMuhmmad Muhamm-adK";
+//        $convertToArray = str_split($test);
+        $result = "";
+        $dataConverted = str_split($cmsElementTechnicalName);
+        for ($i = 0; $i < count($dataConverted); $i++) {
+            $word = $dataConverted[$i];
+            if ($word == " ") {
+                $result .= "";
+                continue;
+            }
+            if ($word === "-") {
+                $result .= "_";
+                continue;
+            }
+            if (ctype_upper($word)) {
+                if ($i !== 0) {
+                    $result .= "_";
+                }
+            }
+            $word = strtolower($word);
+            $result .= $word;
+        }
+        return new Response($result);
+    }
+
 }
 
 
@@ -54,14 +83,3 @@ class FormCreateCmsElementController extends AbstractController
 
 
 
-//        $pluginTechnicalName=$request->request->get('pluginTechnicalName');
-//        $version=$request->request->get("version");
-//        $pluginDescription=$request->request->get("pluginDescription");
-//        $pluginLabelDE=$request->request->get("pluginLabelDE");
-//        $pluginLabelEN=$request->request->get("pluginLabelEN");
-//        $cmsTechnicalName=$request->request->get("cmsTechnicalName");
-//        $cmsElementLabel=$request->request->get("cmsElementLabel");
-//        $cmsDefaultPreviewImage=$request->request->get("cmsDefaultPreviewImage");
-//        $cmsDefaultComponentImage=$request->request->get("cmsDefaultComponentImage");
-//        $cmsPreviewImage=$request->files->get("cmsPreviewImage");
-//        $cmsComponentImage=$request->files->get("cmsComponentImage");

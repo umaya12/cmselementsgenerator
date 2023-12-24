@@ -4,6 +4,24 @@
         $pluginDescription = $formData['pluginDescription'];
         $pluginLabelDE = $formData['pluginLabelDE'];
         $pluginLabelEN = $formData['pluginLabelEN'];
+
+
+        //        $pluginTechnicalName=$request->request->get('pluginTechnicalName');
+        //        $version=$request->request->get("version");
+        //        $pluginDescription=$request->request->get("pluginDescription");
+        //        $pluginLabelDE=$request->request->get("pluginLabelDE");
+        //        $pluginLabelEN=$request->request->get("pluginLabelEN");
+        //        $cmsTechnicalName=$request->request->get("cmsTechnicalName");
+        //        $cmsElementLabel=$request->request->get("cmsElementLabel");
+        //        $cmsDefaultPreviewImage=$request->request->get("cmsDefaultPreviewImage");
+        //        $cmsDefaultComponentImage=$request->request->get("cmsDefaultComponentImage");
+        //        $cmsPreviewImage=$request->files->get("cmsPreviewImage");
+        //        $cmsComponentImage=$request->files->get("cmsComponentImage");
+
+
+
+
+
         pluginTechnicalName
         version
         pluginDescription
