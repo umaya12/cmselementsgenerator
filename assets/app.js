@@ -14,3 +14,37 @@ import './bootstrap';
 require('bootstrap');
 
 
+///////////////////////////////////
+
+// app.js
+import { createApp } from 'vue';
+
+const app = createApp({
+    data() {
+        return {
+            counter: 0,
+            syr:0,
+            eur:0,
+        };
+    },
+    created(){
+
+    },
+    watch:{
+        eur:function(v){
+            console.log(v)
+            // this.eur=v*3000
+        },
+    },
+    computed:{
+
+
+    },
+    methods:{
+        alertMe(){
+            alert(35235)
+        }
+    }
+});
+
+app.mount('#vue-app');

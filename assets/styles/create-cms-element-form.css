@@ -1,0 +1,75 @@
+.form-wrapper {
+  width: 60vw;
+}
+
+.form .form-control {
+  border: 1px solid #0DCAF0;
+}
+.form .form-control:focus {
+  border: 2px solid #0DCAF0;
+  box-shadow: 0 0 0 0.25rem rgba(0, 225, 255, 0.22);
+}
+.form .navigation .nav-point {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  background-color: #ccc;
+  position: relative;
+  margin-left: 100px;
+}
+.form .navigation .nav-point.nav-point:not(:first-of-type)::before {
+  content: "";
+  background-color: #ccc;
+  width: 120px;
+  height: 5px;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+  transition: all 1s;
+}
+.form .navigation .nav-point.active-nav-point:not(:first-of-type)::before {
+  content: "";
+  background-color: #0DCAF0;
+  width: 120px;
+  height: 5px;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+  transition: all 1s;
+}
+.form .tabs-container {
+  position: relative;
+  width: 100%;
+}
+.form .tabs-container .tabs {
+  transition: all;
+  display: none;
+}
+.form .tabs-container .tabs.show-tab {
+  display: block;
+}
+.form .tabs-container .tabs .headline-line {
+  border-left: 10px solid #0DCAF0;
+  padding-left: 1rem;
+}
+.form .tabs-container .tabs .form-check {
+  flex-basis: 20%;
+}
+.form .tabs-container .tabs .form-check-label {
+  flex-basis: 70%;
+}
+.form .tabs-container #send {
+  display: none;
+}/*# sourceMappingURL=create-cms-element-form.css.map */

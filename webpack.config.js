@@ -50,6 +50,7 @@ Encore
     // .configureBabel((config) => {
     //     config.plugins.push('@babel/a-babel-plugin');
     // })
+    .enableVueLoader()
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {

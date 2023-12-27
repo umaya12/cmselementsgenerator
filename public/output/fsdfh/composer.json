@@ -1,0 +1,24 @@
+{
+    "name": "ap/cms-image-text",
+    "description": "dfhh",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "dsfhdfh",
+    "authors": [
+        {
+            "name": "apollon GmbH+Co. KG"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "fsdfh\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "fsdfh\\fsdfh",
+        "label": {
+            "de-DE": " ",
+            "en-GB": ""
+        }
+    }
+}

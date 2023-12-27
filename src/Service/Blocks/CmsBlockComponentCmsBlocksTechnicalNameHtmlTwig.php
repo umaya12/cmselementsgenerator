@@ -2,13 +2,14 @@
 
 namespace App\Service\Blocks;
 
+use App\Helper\FormatConverter;
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
 class CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInterface
 {
 
-    public function __construct(private FormDataManager $cmsFormDataManager)
+    public function __construct(private FormDataManager $cmsFormDataManager, private FormatConverter $formatConverter)
     {
     }
 
@@ -23,8 +24,9 @@ class CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInte
 
     public function getContent($cmsBlocksTechnicalName)
     {
+        $twigTagCmsBlocksTechnicalName=$this->formatConverter->convertToTwigTags($cmsBlocksTechnicalName);
         $content = "
-            {% block element_ap_image_text %}
+            {% block $twigTagCmsBlocksTechnicalName %}
         <div class=\"sw-cms-block-$cmsBlocksTechnicalName\">
             <slot name=\"ApCmsImageText\"></slot>
         </div>

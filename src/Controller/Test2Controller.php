@@ -23,16 +23,17 @@ class Test2Controller extends AbstractController
     public function index(): Response
     {
         //get Structure
-        $structure = $this->structure->getCmsElementStructure();
-        //! Create Structure
-        $createFolders = $this->folderCreation->createStructure($structure);
+//        $structure = $this->structure->getCmsElementStructure();
+//        //! Create Structure
+//        $createFolders = $this->folderCreation->createStructure($structure);
 
 //        foreach ($structure as $path) {
 //            $this->fileCreationService->createFile($path);
 //        }
 
         return $this->render('test2/index.html.twig', [
-            'createFolders' => $createFolders,
+            'createFolders' => "ddd",
+//            'createFolders' => $createFolders,
         ]);
     }
 }

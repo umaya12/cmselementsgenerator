@@ -13,26 +13,28 @@ export default class extends Controller {
 
 
 
-
-
-    //Die connect-Methode wird aufgerufen, sobald der Controller mit einem Element im DOM verknüpft wird
-    connect() {
-        // this.targets;
-        console.log(this.identifier + " this.identifier "); // اظهار اسم الكونترولر
-        this.element.style.backgroundColor = 'yellow'; // data-controller hello لتلوين خلفية الديف الذي يملك ال
-
-    }
-
-//Die initialize-Methode wird einmal aufgerufen, wenn der Controller instanziiert wird.
     initialize() {
-         this.element.style.backgroundColor = 'yellow'; // data-controller hello لتلوين خلفية الديف الذي يملك ال
-    }
- // Die disconnect-Methode wird aufgerufen, wenn der Controller vom DOM-Element getrennt wird.
-    disconnect() {
-        console.log('Controller getrennt');
+        this.boundHandleMyEvent = this.handleMyEvent.bind(this);
     }
 
 
+    connect() {
+
+
+        document.addEventListener("myEvent", this.boundHandleMyEvent);
+
+
+        this.element.textContent = 'Ohaaaaaaaaaaa Stimulus! Edit me in assets/controllers/hello_controller.js';
+    }
+
+    findFoo() {
+        console.log("Hello");
+    }
+
+    handleMyEvent(event) {
+        console.log(event);
+        this.mySpanTarget; // Manipulate the span. No problem.
+    }
 
 
 }

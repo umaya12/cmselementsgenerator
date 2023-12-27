@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+		crossorigin="anonymous">
+	<link rel="stylesheet"
+		href="style/style.css">
+
+</head>
+
+<body>
+
+	<div class="container"
+		id="app">
+		<div class="form-wrapper m-5 py-5">
+			<form class="form d-flex justify-content-center align-items-center flex-column">
+				<div class="navigation d-flex align-items-center"
+					id="nav-tab"
+					role="tablist">
+					<div class="nav-point active-nav-point bg-info">1</div>
+					<div :class="{ 'bg-info active-nav-point': currentTab >= 2 }"
+						class="nav-point ">2</div>
+					<div class="nav-point"
+						:class="{'bg-info active-nav-point':currentTab>=3}">3</div>
+					<div class="nav-point"
+						:class="{'bg-info active-nav-point':currentTab >=4}">4</div>
+				</div>
+
+				<div class="tabs-container">
+					<!-- {# Plugin Details #} -->
+					<div class="tabs mt-5 "
+						v-show="currentTab === 1">
+						<h2 class="headline-line mb-3">Plugin Details</h2>
+						<div class="mb-3 row">
+							<div class="col-8">
+								<label class="form-label"
+									for="pluginTechnicalName">Plugin Technical Name</label> <span
+									id="pluginTechnicalNameLabel"></span>
+								<input type="text"
+									name="pluginTechnicalName"
+									id="pluginTechnicalName"
+									placeholder="e.g. MkiImageText"
+									class="form-control"
+									v-model="cmsForm.stepOne.pluginTechnicalName"
+									aria-describedby="pluginTechnicalNameHelp">
+
+								<div id="pluginTechnicalNameHelp"
+									class="form-text">Space is deleted, and the first letter after the space is replaced with a
+									capital letter</div>
+
+
+							</div>
+
+							<div class="col-4">
+								<label class="form-label"
+									for="version">Version</label>
+								<input type="text"
+									name="version"
+									id="version"
+									placeholder="e.g. 1.0.0"
+									class="form-control"
+									:class="{'border-danger': hasError('version')}"
+									aria-describedby="versionHelper"
+									v-model="cmsForm.stepOne.version">
+								<div id="versionHelper"
+									class="form-text">only number and poaint, deafult value 1.0.0 </div>
+								<!-- <div id="versionHelperError"
+									class="form-text">only number and poaint, deafult value 1.0.0 </div> -->
+							</div>
+						</div>
+
+
+						<div class="mb-3">
+							<label class="form-label"
+								for="pluginDescription">Plugin Description</label>
+							<input type="text"
+								name="pluginDescription"
+								id="pluginDescription"
+								class="form-control"
+								aria-describedby="pluginDescriptionHelper"
+								v-model="cmsForm.stepOne.pluginDescription">
+							<div id="pluginDescriptionHelper"
+								class="form-text">Wie wird den Plugin beschreiben in Admin </div>
+						</div>
+
+
+						<div class="row mb-3">
+							<div class="col-6">
+								<label class="form-label"
+									for="pluginLabelDE">Plugin Label (DE)</label>
+								<input type="text"
+									name="pluginLabelDE"
+									id="pluginLabelDE"
+									class="form-control"
+									aria-describedby="pluginLabelDEHelper"
+									v-model="cmsForm.stepOne.pluginLabelDE">
+								<div id="pluginLabelDEHelper"
+									class="form-text">Wie wird den Plugin in deutsch bezeichnet </div>
+							</div>
+							<div class="col-6">
+								<label class="form-label"
+									for="pluginLabelEN">Plugin Label (EN)</label>
+								<input type="text"
+									name="pluginLabelEN"
+									id="pluginLabelEN"
+									class="form-control"
+									aria-describedby="pluginLabelDEHelper"
+									v-model="cmsForm.stepOne.pluginLabelEN">
+								<div id="pluginLabelDEHelper"
+									class="form-text">Wie wird den Plugin in englisch bezeichnet </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- {#  CMS Element  #} -->
+					<div v-show="currentTab==2"
+						class="tabs mt-5 nav-point">
+						<h2 class="headline-line mb-3">CMS Element Details</h2>
+
+						<!-- {#    cms Element TechnicalName #} -->
+						<div class="mb-3">
+							<label class="form-label"
+								for="cmsElementTechnicalName">Technical Name</label>
+							<input type="text"
+								name="cmsElementTechnicalName"
+								id="cmsElementTechnicalName"
+								class="form-control"
+								placeholder="e.g. mki-cms-element-name"
+								aria-describedby="cmsElementTechnicalNameHelper"
+								v-model="cmsForm.stepTwo.cmsElementTechnicalName">
+							<div id="cmsElementTechnicalNameHelper"
+								class="form-text">Leerzeichen werden gelöscht, die GroßenBuchstaben werden mit strich ersetzt
+								(-) </div>
+
+						</div>
+						<!-- {#   CMS Element label #} -->
+						<div class="mb-3 row">
+
+							<div class="col-6">
+
+								<label class="form-label"
+									for="cmsElementLabelDE">Element Label (DE)</label>
+								<input type="text"
+									name="cmsElementLabelDE"
+									id="cmsElementLabelDE"
+									class="form-control"
+									aria-describedby="cmsElementLabelDEHelper"
+									v-model="cmsForm.stepTwo.cmsElementLabelDE">
+
+								<div id="cmsElementLabelDEHelper"
+									class="form-text">Wie wird den CMS_Element in deutsch bezeichnet </div>
+
+							</div>
+
+							<div class="col-6">
+
+								<label class="form-label"
+									for="cmsElementLabelEN">Element Label (EN)</label>
+								<input type="text"
+									name="cmsElementLabelEN"
+									id="cmsElementLabelEN"
+									class="form-control"
+									aria-describedby="cmsElementLabelENHelper"
+									v-model="cmsForm.stepTwo.cmsElementLabelEN">
+								<div id="cmsElementLabelENHelper"
+									class="form-text">Wie wird den CMS_Element in Englisch bezeichnet </div>
+							</div>
+
+						</div>
+
+						<!-- {#   CMS Element Image #} -->
+						<div class="row mb-3">
+
+							<div class="col-8">
+								<label class="form-label"
+									for="cmsPreviewImage">CMS Preview Image</label>
+								<input type="file"
+									name="cmsPreviewImage"
+									id="cmsPreviewImage"
+									class="form-control"
+									v-model="cmsForm.stepTwo.cmsPreviewImage">
+							</div>
+
+							<div class="col-4 d-flex justify-content-center align-items-center">
+								<label class="form-check-label"
+									for="cmsDefaultPreviewImage">use default preview
+									Image</label>
+								<div class="form-check">
+									<input type="checkbox"
+										value="true"
+										name="cmsDefaultPreviewImage"
+										id="cmsDefaultPreviewImage"
+										class="form-check-input"
+										v-model="cmsForm.stepTwo.cmsDefaultPreviewImage">
+								</div>
+
+							</div>
+						</div>
+
+
+						<div class="row mb-3">
+							<div class="col-8">
+								<label class="form-label"
+									for="cms-component-image"> Component Image</label>
+								<input type="file"
+									name="cmsComponentImage"
+									id="cms-component-image"
+									class="form-control"
+									v-model="cmsForm.stepTwo.cmsComponentImage">
+							</div>
+							<div class="col-4 d-flex justify-content-center align-items-center">
+								<label class="form-check-label"
+									style="flex-basis:70%"
+									for="cmsDefaultComponentImage">use
+									default component
+									Image</label>
+
+								<div class="form-check">
+									<input type="checkbox"
+										value="true"
+										name="cmsDefaultComponentImage"
+										id="cmsDefaultComponentImage"
+										class="form-check-input float-right p-1"
+										v-model="cmsForm.stepTwo.cmsDefaultComponentImage">
+								</div>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<!-- CMS Element Flieds -->
+					<div v-show="currentTab==3"
+						class="tabs mt-5">
+						<h2 class="headline-line mb-3">Hoppys</h2>
+
+						<div class="form-group">
+							<label for="">Hoppy</label>
+							<input type="text"
+								class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="">Anmerkung</label>
+							<textarea name=""
+								id=""
+								cols="30"
+								rows="3"
+								class="form-control"></textarea>
+						</div>
+
+					</div>
+
+					<!-- {#  CMS Blocks #} -->
+					<div v-show="currentTab==4"
+						class="tabs mt-5">
+						<h2 class="headline-line mb-3">CMS Blocks</h2>
+						<!-- {#    cms Block TechnicalName #} -->
+						<div class="mb-3">
+							<label class="form-label"
+								for="cmsBlocksTechnicalName">Technical Name</label>
+							<input type="text"
+								name="cmsBlocksTechnicalName"
+								id="cmsBlocksTechnicalName"
+								class="form-control"
+								v-model="cmsForm.stepFour.cmsBlocksTechnicalName">
+						</div>
+
+						{# CMS Blocks label #}
+						<div class="mb-3 row">
+
+							<div class="col-6">
+
+								<label class="form-label"
+									for="cmsBlocksLabelDE">Blocks Label (DE)</label>
+								<input type="text"
+									name="cmsBlocksLabelDE"
+									id="cmsBlocksLabelDE"
+									class="form-control"
+									v-model="cmsForm.stepFour.cmsBlocksLabelDE">
+							</div>
+
+							<div class="col-6">
+
+								<label class="form-label"
+									for="cmsBlocksLabelEN">Blocks Label (EN)</label>
+								<input type="text"
+									name="cmsBlocksLabelEN"
+									id="cmsBlocksLabelEN"
+									class="form-control"
+									v-model="cmsForm.stepFour.cmsBlocksLabelEN">
+							</div>
+
+						</div>
+
+						<!-- {#    Blocks Category #} -->
+						<div class="mb-3">
+							<label class="form-label"
+								for="cmsBlocksCategory">CMS block category</label>
+							<select type="file"
+								name="cmsBlocksCategory"
+								id="cmsBlocksCategory"
+								v-model="cmsForm.stepFour.cmsBlocksCategory"
+								class="form-select">
+								<option v-for="cmsBlocksCategoryList in cmsForm.stepFour.cmsBlocksCategoryList"
+									:value="cmsBlocksCategoryList"
+									:key="cmsBlocksCategoryList">{{cmsBlocksCategoryList}}</option>
+							</select>
+						</div>
+						<div class="row py-4 justify-content-between">
+							<button v-show="currentTab==4"
+								@click="sendData()"
+								id="send"
+								class="btn btn-info btn-lg btn-block">Senden</button>
+						</div>
+					</div>
+				</div>
+
+			</form>
+
+			<div v-if="validationErrors.length > 0 "
+				class="alert alert-danger mx-0 my-2"
+				id="msgError">
+				<div v-for="(message, key) in validationErrors"
+					:key="key">{{ message.msg }} | {{ message.version }}<br> <pre>	</pre></div>
+			</div>
+
+
+			<div :class="{ 'd-none': infoMsg.status === false }"
+				class="alert alert-info"
+				id="infoMsg">asd</div>
+
+			<div class="row py-4 justify-content-between">
+				<div class="col-auto">
+					<button type="button"
+						id="prev"
+						class="btn btn-secondary"
+						@click="goToPreviousTab()">Prevers</button>
+				</div>
+				<div class="col-auto ">
+					<button v-if="currentTab<4"
+						@click="goToNextTab()"
+						type="button"
+						class="btn btn-info"
+						:disabled="this.errorMsg.status"
+						id="next">Next</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/vue@next"></script>
+	<script src="app/form_vuejs.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+	<!-- <script>
+		let msgError = document.getElementById("msgError");
+		let pluginTechnicalNameLabel = document.getElementById("pluginTechnicalNameLabel");
+		let versionInput = document.getElementById("version")
+		let pluginTechnicalName = document.getElementById("pluginTechnicalName")
+		let formStatus = true;
+		function pluginValidate(el) {
+			let newValue = el.value.replace(/\s+/g, '');
+			pluginTechnicalNameLabel.innerHTML = " " + newValue;
+			return newValue;
+
+		}
+		function versionValidate(el) {
+			if (el.value.length > 5 || isNaN(el.value)) {
+				el.value.length = 5;
+				msgError.classList.remove("d-none")
+				msgError.innerHTML = "Length darf nicht länger als 9 Buchstaben und nur poaint als sonderzeichen enthalten , und keinen Text"
+				versionInput.classList.add("border-danger")
+				formStatus = false;
+			} else {
+				versionInput.classList.remove("border-danger")
+				msgError.classList.add("d-none")
+				formStatus = true;
+
+			}
+
+
+		}
+
+
+	</script>
+
+	<script src="assets/create-cms-element-form.js">
+	</script> -->
+
+
+</body>
+
+</html>

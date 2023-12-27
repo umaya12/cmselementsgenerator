@@ -32,6 +32,7 @@
 
         <service id="App\Service\CmsElementFilesContent\CreateMainJs" public="true"/>
         <service id="App\Service\CreatePluginIndexPhp" public="true"/>
+        <service id="App\Helper\FormatConverter" public="true" />
         <service id="App\Service\CmsElementFilesContent\CreateComposerJson" public="true"/>
         <service id="App\Service\Blocks\BlockIndexJs" public="true"/>
         <service id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig" public="true"/>

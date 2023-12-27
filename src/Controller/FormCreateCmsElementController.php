@@ -37,42 +37,41 @@ class FormCreateCmsElementController extends AbstractController
             foreach ($structures as $path) {
                 $this->fileCreationService->createFile($path);
             }
-//            dump($structure);
+            // dump($structure);
         }
-//        exit;
+        // exit;
         return $this->render('form_create_cms_element/index.html.twig', [
             'controller_name' => 'FormCreateCmsElementController',
         ]);
     }
 
-    #[Route('/testemich/{cmsElementTechnicalName}', name: 'form_create_cms_element')]
-    public function convertToTwigTags($cmsElementTechnicalName)
-    {
-//        $data = "HalloIchBinMuhmmad Muhamm-adK";
-//        $convertToArray = str_split($test);
-        $result = "";
-        $dataConverted = str_split($cmsElementTechnicalName);
-        for ($i = 0; $i < count($dataConverted); $i++) {
-            $word = $dataConverted[$i];
-            if ($word == " ") {
-                $result .= "";
-                continue;
-            }
-            if ($word === "-") {
-                $result .= "_";
-                continue;
-            }
-            if (ctype_upper($word)) {
-                if ($i !== 0) {
-                    $result .= "_";
-                }
-            }
-            $word = strtolower($word);
-            $result .= $word;
-        }
-        return new Response($result);
-    }
-
+//    #[Route('/testemich/{cmsElementTechnicalName}', name: 'form_create_cms_element')]
+//    public function convertToTwigTags($cmsElementTechnicalName)
+//    {
+////        $data = "HalloIchBinMuhmmad Muhamm-adK";
+////        $convertToArray = str_split($test);
+//        $result = "";
+//        $dataConverted = str_split($cmsElementTechnicalName);
+//        for ($i = 0; $i < count($dataConverted); $i++) {
+//            $word = $dataConverted[$i];
+//            if ($word == " ") {
+//                $result .= "";
+//                continue;
+//            }
+//            if ($word === "-") {
+//                $result .= "_";
+//                continue;
+//            }
+//            if (ctype_upper($word)) {
+//                if ($i !== 0) {
+//                    $result .= "_";
+//                }
+//            }
+//            $word = strtolower($word);
+//            $result .= $word;
+//        }
+//        return new Response($result);
+//    }
 }
 
 

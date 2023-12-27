@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Vue.js Beispiel</title>
+   <script src="https://unpkg.com/vue@next"></script>
+   <style>
+      .dark {
+         background-color: #333;
+         color: #fff;
+      }
+
+      .red {
+         color: red;
+         background-color: black;
+         padding: 1rem;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="app"
+      class="ss"
+      :class="{'dark': isDark}">
+
+
+      <button @click="isDark =! isDark"> {{ isDark ? "light" : "dark" }}</button>
+      <br>
+      <header-part></header-part>
+
+      <br>
+      isDark: {{ isDark }}
+      <br>
+      <input type="number"
+         v-model="inputNumber">
+      <p>Verdoppelter Wert (computed): {{ doubledNumber }}</p>
+      <button @click="incrementCounter">Zähler erhöhen (method)</button>
+      <p>Zähler: {{ counter }}</p>
+      <p>
+      <p v-if="statu"
+         :class="newStyle">Hallo Zusammen</p>
+      <button @click="changeStyle()">ChangeStyle</button>
+      </p>
+
+      <div class="show"
+         :class="newclass">
+
+         <label for="">drop menue</label> <br>
+         <select v-model="ergb">
+            <option v-for="item in items"
+               :key="item.id"
+               :value="item.name"> {{item.name}} </option>
+         </select>
+
+         <div v-if="check"
+            class="erg"> Korrekt </div>
+
+         <div v-if="ergb=='s'"
+            class="erg"> Ist Falsch </div>
+         <span v-if="itemsContains">Yes</span>
+
+      </div>
+
+   </div>
+   <script>
+      const app = Vue.createApp({
+         data() {
+            return {
+               inputNumber: 0,
+               counter: 0,
+               statu: false,
+               items: [
+                  { name: "Samee", Alter: 20 },
+                  { name: "", Alter: 5 },
+                  { name: "Admin", Alter: 50 },
+               ],
+               ergb: "",
+               isActive: false,
+               error: true,
+               isDark: true
+
+            };
+         },
+         created() {
+            console.log("Die Vue-Instanz wurde erstellt");
+         },
+         computed: {
+            doubledNumber() {
+               return this.inputNumber * 2;
+            },
+            newStyle() {
+               if (this.statu) {
+                  return "red"
+               } else {
+                  return ""
+               }
+            },
+            check() {
+               if (this.ergb == "") {
+                  return true
+               }
+            },
+            newclass() {
+               return {
+                  active: this.isActive,
+                  'text-danger': this.error
+               }
+
+            },
+            itemsContains() {
+               if (this.ergb.includes("Admin")) {
+                  return true
+               }
+            }
+         },
+         methods: {
+            incrementCounter() {
+               this.counter += 1;
+            },
+            changeStyle() {
+               this.statu = this.statu ? false : true
+
+            }
+         },
+         watch: {
+            counter(newValue, oldValue) {
+               console.log(`Der Zähler hat sich von ${oldValue} zu ${newValue} geändert`);
+            }
+         }
+      });
+      app.component('header-part', {
+         template: `
+         <h2>{{title}} Header World </h2>
+         `,
+         data() {
+            return {
+               title: "Hallo"
+            }
+         }
+      })
+
+      app.mount('#app');
+
+   </script>
+
+</body>
+
+</html>
