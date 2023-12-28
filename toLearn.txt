@@ -310,3 +310,53 @@ ctrl+alt+ unten
 
 
 -------------------
+Vuejs
+
+
+      sendData() {
+         axios.post('{{path("app.send.data")}}', this.cmsForm
+         ).then(response => { console.log(response) }).catch(error => {
+            console.log(error)
+         })
+      },
+____________________
+مشكلة
+مشكلة ستواجهك عند استخدام التويغ مع الvuejs
+سيظن التويغ ان {{}} خاصة فيه لذلك قم بتغيير شكل استدعاء البيانات وهناك طريقتين
+اما تضع بالبلوك تبع التويغ
+{% verbatim %}
+<div id="app">
+    {{ message }}
+</div>
+{% endverbatim %}
+
+لاحظ فوق و تحت تبع المحتوى شو حطينا
+
+او تغير شكل استدعاء المعلومات في التويغ
+
+new Vue({
+  el: '#app',
+  delimiters: ['${', '}'] // Ändern Sie die Delimiter
+});
+https://stackoverflow.com/questions/31480612/conflict-on-template-of-twig-and-vue-js
+_-----------------
+تشفيل axios  مع السيمفوني
+
+npm add axios --dev
+داخل الـ js قم ياستيراد الاكسيوس
+import axios from 'axios';
+
+Methods
+
+        sendData() {
+            axios.post('{{path("app.send.data")}}', this.cmsForm
+            ).then(response => { console.log(response) }).catch(error => {
+                console.log(error)
+            })
+        },
+
+-------------------------
+استقبال المعلومات بالكونترولر في حال كانت المعلومات جسون
+        $data = json_decode($request->getContent(), true);
+
+

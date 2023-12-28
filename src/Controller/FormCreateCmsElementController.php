@@ -7,6 +7,7 @@ use App\Service\FolderCreation;
 use App\Service\FolderStructure;
 use App\Service\FormDataManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,23 +27,38 @@ class FormCreateCmsElementController extends AbstractController
     public function index(Request $request): Response
     {
         // Form Data Exportieren
-        $pluginTechnicalName = $request->request->get('pluginTechnicalName');
-        $cmsElementFormData = $request->request->all();
-        if (isset($pluginTechnicalName)) {
-            $this->formDataManager->storeCmsElementFromData($cmsElementFormData);
-            // get folder structor
-            $structures = $this->cmsElementStructure->getCmsElementStructure();
-            // create folder structor
-            $this->folderCreation->createStructure($structures);
-            foreach ($structures as $path) {
-                $this->fileCreationService->createFile($path);
+//        $pluginTechnicalName = $request->request->get('pluginTechnicalName');
+//        $cmsElementFormData = $request->request->all();
+//        $pluginTechnicalName = $request->request->get('pluginTechnicalName');
+//        $cmsElementFormData = $request->request->all();
+        $cmsElementForm = json_decode($request->getContent());
+
+
+
+        $cmsElementFormData = [];
+        $cmsFields = [];
+        foreach ($cmsElementForm as $withoutSteps) {
+            foreach ($withoutSteps as $key => $value) {
+                if ($key !== "fields") {
+                    $cmsElementFormData[$key] = $value;
+                } else {
+                    $cmsFields[] = $value;
+                }
             }
-            // dump($structure);
         }
+
+        $this->formDataManager->storeCmsElementFromData($cmsElementFormData,$cmsFields);
+        // get folder structor
+        $structures = $this->cmsElementStructure->getCmsElementStructure();
+        // create folder structor
+        $this->folderCreation->createStructure($structures);
+        foreach ($structures as $path) {
+            $this->fileCreationService->createFile($path);
+        }
+        // dump($structure);
         // exit;
-        return $this->render('form_create_cms_element/index.html.twig', [
-            'controller_name' => 'FormCreateCmsElementController',
-        ]);
+        return new JsonResponse(["msg" => "Alles gut "], 200); // 400 Bad Request
+
     }
 
 //    #[Route('/testemich/{cmsElementTechnicalName}', name: 'form_create_cms_element')]

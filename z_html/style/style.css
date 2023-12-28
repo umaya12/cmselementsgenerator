@@ -2,10 +2,10 @@
   width: 60vw;
 }
 
-.form .form-control {
+.form .form-control, .form .form-select {
   border: 1px solid #0DCAF0;
 }
-.form .form-control:focus {
+.form .form-control:focus, .form .form-select:focus {
   border: 2px solid #0DCAF0;
   box-shadow: 0 0 0 0.25rem rgba(0, 225, 255, 0.22);
 }

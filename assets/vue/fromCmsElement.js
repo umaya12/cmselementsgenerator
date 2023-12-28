@@ -1,3 +1,4 @@
+import { createApp } from 'vue';
 const createCmsForm = Vue.createApp({
    data() {
       return {
@@ -165,6 +166,4 @@ const createCmsForm = Vue.createApp({
 });
 createCmsForm.mount("#createCmsForm");
 
-// let tabs = document.getElementsByClassName(".tabs").length;
-
-// console.log(tabs)
+ alert(34987)

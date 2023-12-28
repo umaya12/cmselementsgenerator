@@ -18,9 +18,11 @@
 <body>
 
 	<div class="container"
-		id="app">
+		id="createCmsForm">
 		<div class="form-wrapper m-5 py-5">
-			<form class="form d-flex justify-content-center align-items-center flex-column">
+			<form @submit.prevent="sendData"
+				enctype="multipart/form-data"
+				class="form d-flex justify-content-center align-items-center flex-column">
 				<div class="navigation d-flex align-items-center"
 					id="nav-tab"
 					role="tablist">
@@ -41,7 +43,7 @@
 						<div class="mb-3 row">
 							<div class="col-8">
 								<label class="form-label"
-									for="pluginTechnicalName">Plugin Technical Name</label> <span
+									for="pluginTechnicalName">Plugin Technical Name </label> <span
 									id="pluginTechnicalNameLabel"></span>
 								<input type="text"
 									name="pluginTechnicalName"
@@ -49,7 +51,8 @@
 									placeholder="e.g. MkiImageText"
 									class="form-control"
 									v-model="cmsForm.stepOne.pluginTechnicalName"
-									aria-describedby="pluginTechnicalNameHelp">
+									aria-describedby="pluginTechnicalNameHelp"
+									@change="transformName('stepOne.pluginTechnicalName')">
 
 								<div id="pluginTechnicalNameHelp"
 									class="form-text">Space is deleted, and the first letter after the space is replaced with a
@@ -134,7 +137,8 @@
 								class="form-control"
 								placeholder="e.g. mki-cms-element-name"
 								aria-describedby="cmsElementTechnicalNameHelper"
-								v-model="cmsForm.stepTwo.cmsElementTechnicalName">
+								v-model="cmsForm.stepTwo.cmsElementTechnicalName"
+								@change="transformCmsName('stepTwo.cmsElementTechnicalName')">
 							<div id="cmsElementTechnicalNameHelper"
 								class="form-text">Leerzeichen werden gelöscht, die GroßenBuchstaben werden mit strich ersetzt
 								(-) </div>
@@ -239,21 +243,98 @@
 
 					<!-- CMS Element Flieds -->
 					<div v-show="currentTab==3"
-						class="tabs mt-5">
-						<h2 class="headline-line mb-3">Hoppys</h2>
+						class="tabs mt-5 mb-5">
+						<h2 class="headline-line mb-3">CMS Fields</h2>
 
-						<div class="form-group">
-							<label for="">Hoppy</label>
-							<input type="text"
-								class="form-control">
+						<div class="row mb-3">
+							<div class="col-3">
+								<label for="fieldTechnicalName"
+									class="form-label">Field Technical Name</label>
+								<input type="text"
+									name="fieldTechnicalName"
+									id="fieldTechnicalName"
+									class="form-control"
+									v-model="cmsForm.stepThree.fields.fieldTechnicalName"
+									@change="transformName('stepThree.fieldTechnicalName')">
+							</div>
+							<div class="col-3">
+								<label for="fieldLabel"
+									class="form-label"> Field Label </label>
+								<input type="text"
+									name="fieldLabel"
+									id="fieldLabel"
+									class="form-control"
+									v-model="cmsForm.stepThree.fields.fieldLabel">
+							</div>
+
+							<div class="col-3">
+								<label for="fieldTechnicalType"
+									class="form-label">Field Technical Type</label>
+								<select name="fieldTechnicalType"
+									class="form-select"
+									id="fieldTechnicalType"
+									v-model="cmsForm.stepThree.fields.fieldTechnicalType">
+									<option v-for="type in formOptions.stepThree.fieldTypes"
+										:value="type">{{type}}</option>
+								</select>
+							</div>
+
+
+							<div class="col-2 d-flex justify-content-center align-items-center">
+								<label class="form-check-label"
+									style="flex-basis:70%"
+									for="fieldRequired">Required
+								</label>
+
+								<div class="form-check">
+									<input type="checkbox"
+										value="false"
+										name="fieldRequired"
+										id="fieldRequired"
+										class="form-check-input float-right p-1"
+										v-model="cmsForm.stepThree.fields.fieldRequired">
+								</div>
+
+							</div>
+
+							<div class="col-1 d-flex justify-content-center align-items-center">
+								<button type="button"
+									@click="addFields()"
+									class="btn btn-info"> + </button>
+							</div>
+
+
 						</div>
-						<div class="form-group">
-							<label for="">Anmerkung</label>
-							<textarea name=""
-								id=""
-								cols="30"
-								rows="3"
-								class="form-control"></textarea>
+
+						<div class="row bg-info mb-5">
+							<table class="table ">
+								<thead>
+									<tr>
+										<th>Field Technical Name</th>
+										<th>Field Label</th>
+										<th>Field Technical Type</th>
+										<th>Is Required?</th>
+										<th>Remove</th>
+									</tr>
+								</thead>
+								<tbody>
+
+
+									<tr v-for="field in cmsForm.stepThree.fields">
+										<td>{{field.fieldTechnicalName}}</td>
+										<td>{{field.fieldLabel}}</td>
+										<td>{{field.fieldTechnicalType}}</td>
+										<td>{{field.fieldRequired? 'ja':'nein' }}</td>
+										<td class="d-flex justify-content-center align-items-center"> <button
+												@click="removeField(field.fieldId)"
+												type="button"
+												class="btn btn-outline-danger btn-sm"> X </button> </td>
+
+									</tr>
+								</tbody>
+							</table>
+
+
 						</div>
 
 					</div>
@@ -270,7 +351,8 @@
 								name="cmsBlocksTechnicalName"
 								id="cmsBlocksTechnicalName"
 								class="form-control"
-								v-model="cmsForm.stepFour.cmsBlocksTechnicalName">
+								v-model="cmsForm.stepFour.cmsBlocksTechnicalName"
+								@change="transformCmsName('stepFour.cmsBlocksTechnicalName')">
 						</div>
 
 						{# CMS Blocks label #}
@@ -309,27 +391,29 @@
 								id="cmsBlocksCategory"
 								v-model="cmsForm.stepFour.cmsBlocksCategory"
 								class="form-select">
-								<option v-for="cmsBlocksCategoryList in cmsForm.stepFour.cmsBlocksCategoryList"
+								<option v-for="cmsBlocksCategoryList in formOptions.stepFour.cmsBlocksCategoryList"
 									:value="cmsBlocksCategoryList"
 									:key="cmsBlocksCategoryList">{{cmsBlocksCategoryList}}</option>
 							</select>
 						</div>
 						<div class="row py-4 justify-content-between">
 							<button v-show="currentTab==4"
-								@click="sendData()"
 								id="send"
+								type="submit"
 								class="btn btn-info btn-lg btn-block">Senden</button>
 						</div>
 					</div>
 				</div>
 
 			</form>
-
-			<div v-if="validationErrors.length > 0 "
+			<!-- 'CHange' -->
+			<div v-if="validationErrors.length > 3 "
 				class="alert alert-danger mx-0 my-2"
 				id="msgError">
 				<div v-for="(message, key) in validationErrors"
-					:key="key">{{ message.msg }} | {{ message.version }}<br> <pre>	</pre></div>
+					:key="key">{{ message.msg }} | {{ message.version }}<br>
+					<pre>	</pre>
+				</div>
 			</div>
 
 

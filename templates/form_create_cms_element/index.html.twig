@@ -3,52 +3,48 @@
 {% block title %}Hello FormCreateCmsElementController!{% endblock %}
 
 {% block body %}
+	{% verbatim %}
 
-
-
-	<div class="container" id="vue-app">
-		<h2>{{ 'Hallo Muhammad ' }}{{ '{{ counter }}' }}</h2>
-		<button @click="counter++">Add</button>
+	<div class="container"
+		  id="createCmsForm">
 		<div class="form-wrapper m-5 py-5">
-			<form action="{{ path('form_create_cms_element') }}"
-					method="POST"
+			<form @submit.prevent="sendData"
+					enctype="multipart/form-data"
 					class="form d-flex justify-content-center align-items-center flex-column">
 				<div class="navigation d-flex align-items-center"
 					  id="nav-tab"
 					  role="tablist">
 					<div class="nav-point active-nav-point bg-info">1</div>
-					<div class="nav-point">2</div>
-					<div class="nav-point">3</div>
-					<div class="nav-point">4</div>
+					<div :class="{ 'bg-info active-nav-point': currentTab >= 2 }"
+						  class="nav-point ">2</div>
+					<div class="nav-point"
+						  :class="{'bg-info active-nav-point':currentTab>=3}">3</div>
+					<div class="nav-point"
+						  :class="{'bg-info active-nav-point':currentTab >=4}">4</div>
 				</div>
 
 				<div class="tabs-container">
-
 					<!-- {# Plugin Details #} -->
-					<div class="tabs show-tab mt-5">
+					<div class="tabs mt-5 "
+						  v-show="currentTab === 1">
 						<h2 class="headline-line mb-3">Plugin Details</h2>
 						<div class="mb-3 row">
 							<div class="col-8">
 								<label class="form-label"
-										 for="pluginTechnicalName">Plugin Technical Name</label>
-								<span
-										  id="pluginTechnicalNameLabel">
-
-								</span>
+										 for="pluginTechnicalName">Plugin Technical Name </label> <span
+										  id="pluginTechnicalNameLabel"></span>
 								<input type="text"
 										 name="pluginTechnicalName"
 										 id="pluginTechnicalName"
 										 placeholder="e.g. MkiImageText"
 										 class="form-control"
+										 v-model="cmsForm.stepOne.pluginTechnicalName"
 										 aria-describedby="pluginTechnicalNameHelp"
-								>
-								<input type="text" name="" v-model="syr" id=""> syr
-								<input type="text" name="" v-model="eur" id="">eur
+										 @change="transformName('stepOne.pluginTechnicalName')">
 
 								<div id="pluginTechnicalNameHelp"
 									  class="form-text">Space is deleted, and the first letter after the space is replaced with a
-									capital letter
-								</div>
+									capital letter</div>
 
 
 							</div>
@@ -61,13 +57,13 @@
 										 id="version"
 										 placeholder="e.g. 1.0.0"
 										 class="form-control"
+										 :class="{'border-danger': hasError('version')}"
 										 aria-describedby="versionHelper"
-{#										 oninput="versionValidate(this)"#}
-										  @input="versionValidate"
-								>
+										 v-model="cmsForm.stepOne.version">
 								<div id="versionHelper"
-									  class="form-text">only number and poaint
-								</div>
+									  class="form-text">only number and poaint, deafult value 1.0.0 </div>
+								<!-- <div id="versionHelperError"
+									class="form-text">only number and poaint, deafult value 1.0.0 </div> -->
 							</div>
 						</div>
 
@@ -79,10 +75,10 @@
 									 name="pluginDescription"
 									 id="pluginDescription"
 									 class="form-control"
-									 aria-describedby="pluginDescriptionHelper">
+									 aria-describedby="pluginDescriptionHelper"
+									 v-model="cmsForm.stepOne.pluginDescription">
 							<div id="pluginDescriptionHelper"
-								  class="form-text">Wie wird den Plugin beschreiben in Admin
-							</div>
+								  class="form-text">Wie wird den Plugin beschreiben in Admin </div>
 						</div>
 
 
@@ -94,10 +90,10 @@
 										 name="pluginLabelDE"
 										 id="pluginLabelDE"
 										 class="form-control"
-										 aria-describedby="pluginLabelDEHelper">
+										 aria-describedby="pluginLabelDEHelper"
+										 v-model="cmsForm.stepOne.pluginLabelDE">
 								<div id="pluginLabelDEHelper"
-									  class="form-text">Wie wird den Plugin in deutsch bezeichnet
-								</div>
+									  class="form-text">Wie wird den Plugin in deutsch bezeichnet </div>
 							</div>
 							<div class="col-6">
 								<label class="form-label"
@@ -106,17 +102,17 @@
 										 name="pluginLabelEN"
 										 id="pluginLabelEN"
 										 class="form-control"
-										 aria-describedby="pluginLabelDEHelper">
+										 aria-describedby="pluginLabelDEHelper"
+										 v-model="cmsForm.stepOne.pluginLabelEN">
 								<div id="pluginLabelDEHelper"
-									  class="form-text">Wie wird den Plugin in englisch bezeichnet
-								</div>
+									  class="form-text">Wie wird den Plugin in englisch bezeichnet </div>
 							</div>
 						</div>
 					</div>
 
-
 					<!-- {#  CMS Element  #} -->
-					<div class="tabs mt-5">
+					<div v-show="currentTab==2"
+						  class="tabs mt-5 nav-point">
 						<h2 class="headline-line mb-3">CMS Element Details</h2>
 
 						<!-- {#    cms Element TechnicalName #} -->
@@ -128,11 +124,12 @@
 									 id="cmsElementTechnicalName"
 									 class="form-control"
 									 placeholder="e.g. mki-cms-element-name"
-									 aria-describedby="cmsElementTechnicalNameHelper">
+									 aria-describedby="cmsElementTechnicalNameHelper"
+									 v-model="cmsForm.stepTwo.cmsElementTechnicalName"
+									 @change="transformCmsName('stepTwo.cmsElementTechnicalName')">
 							<div id="cmsElementTechnicalNameHelper"
 								  class="form-text">Leerzeichen werden gelöscht, die GroßenBuchstaben werden mit strich ersetzt
-								(-)
-							</div>
+								(-) </div>
 
 						</div>
 						<!-- {#   CMS Element label #} -->
@@ -146,10 +143,11 @@
 										 name="cmsElementLabelDE"
 										 id="cmsElementLabelDE"
 										 class="form-control"
-										 aria-describedby="cmsElementLabelDEHelper">
+										 aria-describedby="cmsElementLabelDEHelper"
+										 v-model="cmsForm.stepTwo.cmsElementLabelDE">
+
 								<div id="cmsElementLabelDEHelper"
-									  class="form-text">Wie wird den CMS_Element in deutsch bezeichnet
-								</div>
+									  class="form-text">Wie wird den CMS_Element in deutsch bezeichnet </div>
 
 							</div>
 
@@ -161,10 +159,10 @@
 										 name="cmsElementLabelEN"
 										 id="cmsElementLabelEN"
 										 class="form-control"
-										 aria-describedby="cmsElementLabelENHelper">
+										 aria-describedby="cmsElementLabelENHelper"
+										 v-model="cmsForm.stepTwo.cmsElementLabelEN">
 								<div id="cmsElementLabelENHelper"
-									  class="form-text">Wie wird den CMS_Element in Englisch bezeichnet
-								</div>
+									  class="form-text">Wie wird den CMS_Element in Englisch bezeichnet </div>
 							</div>
 
 						</div>
@@ -178,7 +176,8 @@
 								<input type="file"
 										 name="cmsPreviewImage"
 										 id="cmsPreviewImage"
-										 class="form-control">
+										 class="form-control"
+										 v-model="cmsForm.stepTwo.cmsPreviewImage">
 							</div>
 
 							<div class="col-4 d-flex justify-content-center align-items-center">
@@ -190,7 +189,8 @@
 											 value="true"
 											 name="cmsDefaultPreviewImage"
 											 id="cmsDefaultPreviewImage"
-											 class="form-check-input">
+											 class="form-check-input"
+											 v-model="cmsForm.stepTwo.cmsDefaultPreviewImage">
 								</div>
 
 							</div>
@@ -204,7 +204,8 @@
 								<input type="file"
 										 name="cmsComponentImage"
 										 id="cms-component-image"
-										 class="form-control">
+										 class="form-control"
+										 v-model="cmsForm.stepTwo.cmsComponentImage">
 							</div>
 							<div class="col-4 d-flex justify-content-center align-items-center">
 								<label class="form-check-label"
@@ -218,7 +219,8 @@
 											 value="true"
 											 name="cmsDefaultComponentImage"
 											 id="cmsDefaultComponentImage"
-											 class="form-check-input float-right p-1">
+											 class="form-check-input float-right p-1"
+											 v-model="cmsForm.stepTwo.cmsDefaultComponentImage">
 								</div>
 							</div>
 
@@ -228,27 +230,106 @@
 					</div>
 
 					<!-- CMS Element Flieds -->
-					<div class="tabs mt-5">
-						<h2 class="headline-line mb-3">Hoppys</h2>
+					<div v-show="currentTab==3"
+						  class="tabs mt-5 mb-5">
+						<h2 class="headline-line mb-3">CMS Fields</h2>
 
-						<div class="form-group">
-							<label for="">Hoppy</label>
-							<input type="text"
-									 class="form-control">
+						<div class="row mb-3">
+							<div class="col-3">
+								<label for="fieldTechnicalName"
+										 class="form-label">Field Technical Name</label>
+								<input type="text"
+										 name="fieldTechnicalName"
+										 id="fieldTechnicalName"
+										 class="form-control"
+										 v-model="cmsForm.stepThree.fields.fieldTechnicalName"
+										 @change="transformName('stepThree.fieldTechnicalName')">
+							</div>
+							<div class="col-3">
+								<label for="fieldLabel"
+										 class="form-label"> Field Label </label>
+								<input type="text"
+										 name="fieldLabel"
+										 id="fieldLabel"
+										 class="form-control"
+										 v-model="cmsForm.stepThree.fields.fieldLabel">
+							</div>
+
+							<div class="col-3">
+								<label for="fieldTechnicalType"
+										 class="form-label">Field Technical Type</label>
+								<select name="fieldTechnicalType"
+										  class="form-select"
+										  id="fieldTechnicalType"
+										  v-model="cmsForm.stepThree.fields.fieldTechnicalType">
+									<option v-for="type in formOptions.stepThree.fieldTypes"
+											  :value="type">{{type}}</option>
+								</select>
+							</div>
+
+
+							<div class="col-2 d-flex justify-content-center align-items-center">
+								<label class="form-check-label"
+										 style="flex-basis:70%"
+										 for="fieldRequired">Required
+								</label>
+
+								<div class="form-check">
+									<input type="checkbox"
+											 value="false"
+											 name="fieldRequired"
+											 id="fieldRequired"
+											 class="form-check-input float-right p-1"
+											 v-model="cmsForm.stepThree.fields.fieldRequired">
+								</div>
+
+							</div>
+
+							<div class="col-1 d-flex justify-content-center align-items-center">
+								<button type="button"
+										  @click="addFields()"
+										  class="btn btn-info"> + </button>
+							</div>
+
+
 						</div>
-						<div class="form-group">
-							<label for="">Anmerkung</label>
-							<textarea name=""
-										 id=""
-										 cols="30"
-										 rows="3"
-										 class="form-control"></textarea>
+
+						<div class="row bg-info mb-5">
+							<table class="table ">
+								<thead>
+								<tr>
+									<th>Field Technical Name</th>
+									<th>Field Label</th>
+									<th>Field Technical Type</th>
+									<th>Is Required?</th>
+									<th>Remove</th>
+								</tr>
+								</thead>
+								<tbody>
+
+
+								<tr v-for="field in cmsForm.stepThree.fields">
+									<td>{{field.fieldTechnicalName}}</td>
+									<td>{{field.fieldLabel}}</td>
+									<td>{{field.fieldTechnicalType}}</td>
+									<td>{{field.fieldRequired? 'ja':'nein' }}</td>
+									<td class="d-flex justify-content-center align-items-center"> <button
+												  @click="removeField(field.fieldId)"
+												  type="button"
+												  class="btn btn-outline-danger btn-sm"> X </button> </td>
+
+								</tr>
+								</tbody>
+							</table>
+
+
 						</div>
 
 					</div>
 
 					<!-- {#  CMS Blocks #} -->
-					<div class="tabs mt-5">
+					<div v-show="currentTab==4"
+						  class="tabs mt-5">
 						<h2 class="headline-line mb-3">CMS Blocks</h2>
 						<!-- {#    cms Block TechnicalName #} -->
 						<div class="mb-3">
@@ -257,7 +338,9 @@
 							<input type="text"
 									 name="cmsBlocksTechnicalName"
 									 id="cmsBlocksTechnicalName"
-									 class="form-control">
+									 class="form-control"
+									 v-model="cmsForm.stepFour.cmsBlocksTechnicalName"
+									 @change="transformCmsName('stepFour.cmsBlocksTechnicalName')">
 						</div>
 
 						{# CMS Blocks label #}
@@ -270,7 +353,8 @@
 								<input type="text"
 										 name="cmsBlocksLabelDE"
 										 id="cmsBlocksLabelDE"
-										 class="form-control">
+										 class="form-control"
+										 v-model="cmsForm.stepFour.cmsBlocksLabelDE">
 							</div>
 
 							<div class="col-6">
@@ -280,7 +364,8 @@
 								<input type="text"
 										 name="cmsBlocksLabelEN"
 										 id="cmsBlocksLabelEN"
-										 class="form-control">
+										 class="form-control"
+										 v-model="cmsForm.stepFour.cmsBlocksLabelEN">
 							</div>
 
 						</div>
@@ -292,46 +377,60 @@
 							<select type="file"
 									  name="cmsBlocksCategory"
 									  id="cmsBlocksCategory"
+									  v-model="cmsForm.stepFour.cmsBlocksCategory"
 									  class="form-select">
-								<option value="text-image">text-image</option>
-								<option value="text">text</option>
-								<option value="video">video</option>
-								<option value="image">image</option>
+								<option v-for="cmsBlocksCategoryList in formOptions.stepFour.cmsBlocksCategoryList"
+										  :value="cmsBlocksCategoryList"
+										  :key="cmsBlocksCategoryList">{{cmsBlocksCategoryList}}</option>
 							</select>
 						</div>
 						<div class="row py-4 justify-content-between">
-							<button id="send"
-									  class="btn btn-info btn-lg btn-block "
-									  type="submit">Senden
-							</button>
+							<button v-show="currentTab==4"
+									  id="send"
+									  type="submit"
+									  class="btn btn-info btn-lg btn-block">Senden</button>
 						</div>
 					</div>
 				</div>
 
 			</form>
+			<!-- 'CHange' -->
+			<div v-if="validationErrors.length > 3 "
+				  class="alert alert-danger mx-0 my-2"
+				  id="msgError">
+				<div v-for="(message, key) in validationErrors"
+					  :key="key">{{ message.msg }} | {{ message.version }}<br>
+					<pre>	</pre>
+				</div>
+			</div>
 
-			<div class="alert alert-danger mx-0 my-2 d-none"
-				  id="msgError"></div>
-			<div class="alert alert-info d-none"
-				  id="msgInfo"></div>
+
+			<div :class="{ 'd-none': infoMsg.status === false }"
+				  class="alert alert-info"
+				  id="infoMsg">asd</div>
 
 			<div class="row py-4 justify-content-between">
 				<div class="col-auto">
 					<button type="button"
 							  id="prev"
-							  class="btn btn-secondary">Prevers
-					</button>
+							  class="btn btn-secondary"
+							  @click="goToPreviousTab()">Prevers</button>
 				</div>
 				<div class="col-auto ">
-					<button type="button"
+					<button v-if="currentTab<4"
+							  @click="goToNextTab()"
+							  type="button"
 							  class="btn btn-info"
-							  id="next" @click="alertMe">Next
-					</button>
+							  :disabled="this.errorMsg.status"
+							  id="next">Next</button>
 				</div>
 			</div>
 		</div>
 	</div>
-{#	{% block javascripts %}#}
-{#		{{ encore_entry_script_tags('create-cms-element-form') }}#}
-{#	{% endblock %}#}
+
+{% endverbatim %}
 {% endblock %}
+
+	{#	{% block javascripts %}#}
+	{#		{ encore_entry_script_tags('create-cms-element-form') }#}
+	{#	{% endblock %}#}
