@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\CmsElementFilesContent;
+namespace App\Service\Blocks;
 
 use App\Interface\FileCreatorInterface;
 
@@ -16,4 +16,9 @@ class CreateTwigDatei implements FileCreatorInterface
 
     }
 
+    public function getContent(): string
+    {
+        // TODO: Implement getContent() method.
+        return "";
+    }
 }

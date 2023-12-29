@@ -33,31 +33,36 @@ class FormCreateCmsElementController extends AbstractController
 //        $cmsElementFormData = $request->request->all();
         $cmsElementForm = json_decode($request->getContent());
 
-
-
         $cmsElementFormData = [];
         $cmsFields = [];
-        foreach ($cmsElementForm as $withoutSteps) {
-            foreach ($withoutSteps as $key => $value) {
-                if ($key !== "fields") {
-                    $cmsElementFormData[$key] = $value;
-                } else {
-                    $cmsFields[] = $value;
+        if(isset($cmsElementForm)){
+            foreach ($cmsElementForm as $withoutSteps) {
+                foreach ($withoutSteps as $key => $value) {
+                    if ($key !== "fields") {
+                        $cmsElementFormData[$key] = $value;
+                    } else {
+                        $cmsFields[] = $value;
+                    }
                 }
             }
-        }
 
-        $this->formDataManager->storeCmsElementFromData($cmsElementFormData,$cmsFields);
-        // get folder structor
-        $structures = $this->cmsElementStructure->getCmsElementStructure();
-        // create folder structor
-        $this->folderCreation->createStructure($structures);
-        foreach ($structures as $path) {
-            $this->fileCreationService->createFile($path);
+            $this->formDataManager->storeCmsElementFromData($cmsElementFormData,$cmsFields);
+            // get folder structor
+            $structures = $this->cmsElementStructure->getCmsElementStructure();
+            // create folder structor
+            $this->folderCreation->createStructure($structures);
+            foreach ($structures as $path) {
+                $this->fileCreationService->createFile($path);
+            }
+            return new JsonResponse(["msg" => "Cms Element wurden angelegt, bitte warten bis Sie die Daten herunterladen können "], 200); // 400 Bad Request
+
         }
+        return $this->render("form_create_cms_element/index.html.twig", [
+            "Hello"=>"Hello",
+        ]);
+
         // dump($structure);
         // exit;
-        return new JsonResponse(["msg" => "Alles gut "], 200); // 400 Bad Request
 
     }
 

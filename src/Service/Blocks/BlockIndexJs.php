@@ -2,20 +2,21 @@
 
 namespace App\Service\Blocks;
 
+use App\Helper\FormatConverter;
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
 class BlockIndexJs implements FileCreatorInterface
 {
-    private $cmsFormDataManager;
-
-    public function __construct(FormDataManager $cmsFormDataManager)
-    {
-        $this->cmsFormDataManager = $cmsFormDataManager;
+    public function __construct(
+        private FormDataManager $cmsFormDataManager,
+    ) {
     }
 
     public function createFile(string $path): void
     {
+
+
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsBlocksTechnicalName = $formData['cmsBlocksTechnicalName'];
         if (strpos($path, "$cmsBlocksTechnicalName/index.js") !== false) {
@@ -23,7 +24,7 @@ class BlockIndexJs implements FileCreatorInterface
         }
     }
 
-    public function getContent()
+    public function getContent():string
     {
         $jsContent = "import './component';\n";
         $jsContent .= "import './preview';\n\n";

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Service\Blocks;
-
+namespace App\Service\Snippet;
 
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class CmsBlockPreviewCmsBlocksTechnicalNameScss implements  FileCreatorInterface{
+class SnippetGb implements FileCreatorInterface{
 
     public function __construct(
         private FormDataManager $cmsFormDataManager,

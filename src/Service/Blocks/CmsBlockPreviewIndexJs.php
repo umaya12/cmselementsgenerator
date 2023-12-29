@@ -6,7 +6,7 @@ namespace App\Service\Blocks;
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class CmsBlockPreviewCmsBlocksTechnicalNameScss implements  FileCreatorInterface{
+class CmsBlockPreviewIndexJs implements  FileCreatorInterface{
 
     public function __construct(
         private FormDataManager $cmsFormDataManager,

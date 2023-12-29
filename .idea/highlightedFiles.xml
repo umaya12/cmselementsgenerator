@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectTreeColorHighlighter">
     <files>
+      <node color="4" path="$PROJECT_DIR$/src/Controller/FormCreateCmsElementController.php" />
+      <node color="1" path="$PROJECT_DIR$/src/Service/CmsElementFilesContent" />
+      <node color="1" path="$PROJECT_DIR$/src/Service/CmsElementFilesContent/CreateTwigDatei.php" />
       <node color="1" path="$PROJECT_DIR$/src/Service/Example_" />
       <node color="7" path="$PROJECT_DIR$/templates" />
     </files>

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Service\Blocks;
-
+namespace App\Service\Element;
 
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class CmsBlockPreviewCmsBlocksTechnicalNameScss implements  FileCreatorInterface{
+class CmsElementComponent_CmsElementTechnicalNameScss
+    implements FileCreatorInterface
+{
 
     public function __construct(
         private FormDataManager $cmsFormDataManager,
@@ -16,7 +17,6 @@ class CmsBlockPreviewCmsBlocksTechnicalNameScss implements  FileCreatorInterface
     public function createFile(string $path): void
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
-
         // TODO: Implement createFile() method.
     }
 

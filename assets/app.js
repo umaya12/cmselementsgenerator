@@ -173,8 +173,12 @@ const createCmsForm = createApp({
         sendData() {
             axios.post('/createcmselement', this.cmsForm
             ).then(response => {
-                console.log(response.data.msg)
+                // console.log(response.data.msg)
+                this.infoMsg.status = true;
+                this.infoMsg.msg = response.data.msg;
             }).catch(error => {
+                this.errorMsg.status = true;
+                this.errorMsg.msg = "error";
                 console.log(error)
             })
         },

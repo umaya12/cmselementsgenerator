@@ -2,11 +2,11 @@
 
 namespace App\Service\Blocks;
 
-
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig implements  FileCreatorInterface{
+class CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInterface
+{
     public function __construct(private FormDataManager $cmsFormDataManager)
     {
     }
@@ -16,12 +16,14 @@ class CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig implements  FileCreatorInter
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
         if (strpos($path, "cms-block-preview-$cmsBlocksTechnicalName.html.twig")) {
-            file_put_contents($path, $this->getContent($cmsBlocksTechnicalName));
+            file_put_contents($path, $this->getContent());
         }
     }
 
-    public function getContent($cmsBlocksTechnicalName)
+    public function getContent(): string
     {
+        $formData = $this->cmsFormDataManager->getCmsFormData();
+        $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
         $content = "
             {% block element_ap_image_text %}
             <div class=\"d-flex justify-content-center align-items-center\">

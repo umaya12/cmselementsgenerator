@@ -405,9 +405,13 @@
 			</div>
 
 
-			<div :class="{ 'd-none': infoMsg.status === false }"
+			<div v-show="infoMsg.status==true"
 				  class="alert alert-info"
-				  id="infoMsg">asd</div>
+				  id="infoMsg">{{infoMsg.msg}}</div>
+
+			<div v-show="errorMsg.status==true"
+				  class="alert alert-danger"
+				  id="infoMsg">{{errorMsg.msg}}</div>
 
 			<div class="row py-4 justify-content-between">
 				<div class="col-auto">

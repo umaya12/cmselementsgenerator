@@ -14,33 +14,31 @@
     <services>
         <!-- Default-Konfiguration für alle Services -->
         <defaults autowire="true" autoconfigure="true"/>
-
         <!-- Spezifische Services -->
         <service id="App\Service\CmsElementFileCreation" public="true">
             <argument type="collection">
-                <argument type="service" id="App\Service\CreatePluginIndexPhp"/>
-                <argument type="service" id="App\Service\CmsElementFilesContent\CreateComposerJson"/>
+                <argument type="service" id="App\Service\Plugin\CreatePluginIndexPhp"/>
+                <argument type="service" id="App\Service\Plugin\CreateComposerJson"/>
                 <argument type="service" id="App\Service\Blocks\BlockIndexJs"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameScss"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameScss"/>
-                <argument type="service" id="App\Service\Blocks\ComponentIndexJs"/>
-                <argument type="service" id="App\Service\Blocks\PreviewIndexJs"/>
+                <argument type="service" id="App\Service\Blocks\CmsBlockComponentIndexJs"/>
+                <argument type="service" id="App\Service\Blocks\CmsBlockPreviewIndexJs"/>
             </argument>
         </service>
-
-        <service id="App\Service\CmsElementFilesContent\CreateMainJs" public="true"/>
-        <service id="App\Service\CreatePluginIndexPhp" public="true"/>
-        <service id="App\Helper\FormatConverter" public="true" />
-        <service id="App\Service\CmsElementFilesContent\CreateComposerJson" public="true"/>
+        <service id="App\Service\Plugin\CreateMainJs" public="true"/>
+        <service id="App\Service\Plugin\CreatePluginIndexPhp" public="true"/>
+        <service id="App\Helper\FormatConverter" public="true"/>
+        <service id="App\Service\Plugin\CreateComposerJson" public="true"/>
         <service id="App\Service\Blocks\BlockIndexJs" public="true"/>
         <service id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig" public="true"/>
         <service id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameScss" public="true"/>
         <service id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig" public="true"/>
         <service id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameScss" public="true"/>
-        <service id="App\Service\Blocks\ComponentIndexJs" public="true"/>
-        <service id="App\Service\Blocks\PreviewIndexJs" public="true"/>
+        <service id="App\Service\Blocks\CmsBlockComponentIndexJs" public="true"/>
+        <service id="App\Service\Blocks\CmsBlockPreviewIndexJs" public="true"/>
 
         <!--XXXXXXXXXXXXXXXXXParameter Injection in Service XXXXXXXXXXXXXXXXXXXX-->
         <service id="App\Service\FolderStructure" public="true">

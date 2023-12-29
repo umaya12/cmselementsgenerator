@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Service\Blocks;
-
+namespace App\Service\Element;
 
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class CmsBlockPreviewCmsBlocksTechnicalNameScss implements  FileCreatorInterface{
+class CmsElementPreviewCmsElementTechnicalNameScss implements FileCreatorInterface
+{
 
     public function __construct(
         private FormDataManager $cmsFormDataManager,
