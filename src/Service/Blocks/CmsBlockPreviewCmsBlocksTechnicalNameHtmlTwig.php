@@ -2,12 +2,13 @@
 
 namespace App\Service\Blocks;
 
+use App\Helper\FormatConverter;
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
 class CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInterface
 {
-    public function __construct(private FormDataManager $cmsFormDataManager)
+    public function __construct(private FormDataManager $cmsFormDataManager, private FormatConverter $formatConverter)
     {
     }
 
@@ -24,16 +25,18 @@ class CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInterf
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
-        $content = "
-            {% block element_ap_image_text %}
+        $pluginTechnicalName = $formData["pluginTechnicalName"];
+        $pluginTechnicalNameImage = $this->formatConverter->removeHyphens($pluginTechnicalName);
+        $twigTagCmsBlocksTechnical = $this->formatConverter->convertToTwigTags($cmsBlocksTechnicalName);
+
+        $content = "{% block element_{$twigTagCmsBlocksTechnical} %}
             <div class=\"d-flex justify-content-center align-items-center\">
                 <img style=\"width: 100%\"
-                     :src=\"'apcmsimagetext/static/img/cms/component_cms_element.jpg' | asset\"
-                     alt=\"\"
+                     :src=\"'$pluginTechnicalNameImage/static/img/cms/component_cms_element.jpg' | asset\"
+                     alt=\"$pluginTechnicalNameImage\"
                 >
             </div>
-            {% endblock %}
-        ";
+{% endblock %}";
         return $content;
     }
 }

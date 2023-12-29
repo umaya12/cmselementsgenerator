@@ -30,4 +30,9 @@ class FormatConverter
         return $result;
     }
 
+    public function removeHyphens($text)
+    {
+        return str_replace("-", "", $text);
+    }
+
 }

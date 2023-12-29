@@ -15,13 +15,22 @@ class CmsBlockComponentIndexJs implements FileCreatorInterface
     public function createFile(string $path): void
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
-
-        // TODO: Implement createFile() method.
+        $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
+        if (strpos($path, "$cmsBlocksTechnicalName/component/index.js")) {
+            file_put_contents($path, $this->getContent());
+        }
     }
 
     public function getContent(): string
     {
-        // TODO: Implement getContent() method.
-        return "";
+        $formData = $this->cmsFormDataManager->getCmsFormData();
+        $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
+        $content = "import template from './cms-block-component-cmsBlocksTechnicalName.html.twig';
+import './cms-block-component-$cmsBlocksTechnicalName.scss'
+const {Component}=Shopware;
+Component.register(\"sw-cms-block-$cmsBlocksTechnicalName\", {
+template,
+}";
+        return $content;
     }
 }

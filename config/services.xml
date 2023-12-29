@@ -26,6 +26,12 @@
                 <argument type="service" id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameScss"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockComponentIndexJs"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockPreviewIndexJs"/>
+                <argument type="service" id="App\Service\Element\CmsElementPreviewIndexJs"/>
+                <argument type="service" id="App\Service\Element\CmsElementComponentIndexJs"/>
+                <argument type="service" id="App\Service\Element\CmsElementConfigIndexJs"/>
+                <argument type="service" id="App\Service\Element\CmsElementComponentCmsElementTechnicalNameHtmlTwig"/>
+                <argument type="service" id="App\Service\Element\CmsElementPreviewCmsElementTechnicalNameHtmlTwig"/>
+                <argument type="service" id="App\Service\Element\CmsElementConfigCmsElementTechnicalNameHtmlTwig"/>
             </argument>
         </service>
         <service id="App\Service\Plugin\CreateMainJs" public="true"/>
@@ -39,6 +45,12 @@
         <service id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameScss" public="true"/>
         <service id="App\Service\Blocks\CmsBlockComponentIndexJs" public="true"/>
         <service id="App\Service\Blocks\CmsBlockPreviewIndexJs" public="true"/>
+        <service id="App\Service\Element\CmsElementPreviewIndexJs" public="true"/>
+        <service id="App\Service\Element\CmsElementComponentIndexJs" public="true"/>
+        <service id="App\Service\Element\CmsElementConfigIndexJs" public="true"/>
+        <service id="App\Service\Element\CmsElementComponentCmsElementTechnicalNameHtmlTwig" public="true"/>
+        <service id="App\Service\Element\CmsElementPreviewCmsElementTechnicalNameHtmlTwig" public="true"/>
+        <service id="App\Service\Element\CmsElementConfigCmsElementTechnicalNameHtmlTwig" public="true"/>
 
         <!--XXXXXXXXXXXXXXXXXParameter Injection in Service XXXXXXXXXXXXXXXXXXXX-->
         <service id="App\Service\FolderStructure" public="true">

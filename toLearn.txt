@@ -218,6 +218,18 @@ public function getContent($cmsBlocksTechnicalName)
     return $content;
 }
 
+------------- - ------------
+مشكلة في حال اردنا كتابة متغير و لازم يكون ملزوق بنص بدون فراغات
+{% block  twigTagCmsElementTechnicalName _config %}
+الحل
+{$twigTagCmsElementTechnicalName} وضع اسم المتغير بين علامتين
+$content = "{% block {$twigTagCmsElementTechnicalName}_config %}
+                <sw-container>
+
+                </sw-container>
+{% endblock %}";
+return $content;
+
 -----------------------------------------------
 Helper ===>
 يوجد بملف داخل Src
@@ -359,4 +371,5 @@ Methods
 استقبال المعلومات بالكونترولر في حال كانت المعلومات جسون
         $data = json_decode($request->getContent(), true);
 
-
+----------------php ------------
+str_replace("Was suchst","mit was willst du ersetzen", $text der geändert wird )

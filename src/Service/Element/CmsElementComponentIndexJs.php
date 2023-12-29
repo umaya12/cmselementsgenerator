@@ -1,12 +1,12 @@
 <?php
 
-namespace  App\Service\Element;
-
+namespace App\Service\Element;
 
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class CmsElementComponentIndexJs implements FileCreatorInterface {
+class CmsElementComponentIndexJs implements FileCreatorInterface
+{
     public function __construct(
         private FormDataManager $cmsFormDataManager,
     ) {
@@ -15,13 +15,23 @@ class CmsElementComponentIndexJs implements FileCreatorInterface {
     public function createFile(string $path): void
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
-
-        // TODO: Implement createFile() method.
+        $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
+        if (strpos($path, "$cmsElementTechnicalName/component/index.js")) {
+            file_put_contents($path, $this->getContent());
+        }
     }
 
     public function getContent(): string
     {
-        // TODO: Implement getContent() method.
-        return "";
+        $formData = $this->cmsFormDataManager->getCmsFormData();
+        $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
+        $content = "        import template from './cms-element-component-$cmsElementTechnicalName.html.twig';
+        import './cms-element-component-$cmsElementTechnicalName.scss'
+        const {Component}=Shopware;
+        Component.register(\"sw-cms-el-component-$cmsElementTechnicalName\", {
+        template,
+        }
+        ";
+        return $content;
     }
 }
