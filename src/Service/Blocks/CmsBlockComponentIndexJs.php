@@ -16,7 +16,8 @@ class CmsBlockComponentIndexJs implements FileCreatorInterface
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
-        if (strpos($path, "$cmsBlocksTechnicalName/component/index.js")) {
+        $cmsBlocksCategory = $formData["cmsBlocksCategory"];
+        if (strpos($path, "$cmsBlocksCategory/$cmsBlocksTechnicalName/component/index.js")) {
             file_put_contents($path, $this->getContent());
         }
     }

@@ -1,4 +1,5 @@
 <?php
+//Need Only Content
 
 namespace App\Service\Blocks;
 
@@ -16,13 +17,15 @@ class CmsBlockComponentCmsBlocksTechnicalNameScss implements  FileCreatorInterfa
     public function createFile(string $path): void
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
-
-        // TODO: Implement createFile() method.
+        $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
+        if (strpos($path, "cms-block-component-$cmsBlocksTechnicalName.scss")) {
+            file_put_contents($path, $this->getContent());
+        }
     }
 
     public function getContent(): string
     {
         // TODO: Implement getContent() method.
-        return "";
+        return "//Need Only Content";
     }
 }

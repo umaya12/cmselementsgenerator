@@ -16,7 +16,7 @@ class CmsElementComponentIndexJs implements FileCreatorInterface
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
-        if (strpos($path, "$cmsElementTechnicalName/component/index.js")) {
+        if (strpos($path, "sw-cms/elements/$cmsElementTechnicalName/component/index.js")) {
             file_put_contents($path, $this->getContent());
         }
     }
@@ -25,13 +25,12 @@ class CmsElementComponentIndexJs implements FileCreatorInterface
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
-        $content = "        import template from './cms-element-component-$cmsElementTechnicalName.html.twig';
-        import './cms-element-component-$cmsElementTechnicalName.scss'
-        const {Component}=Shopware;
-        Component.register(\"sw-cms-el-component-$cmsElementTechnicalName\", {
-        template,
-        }
-        ";
+        $content = "import template from './cms-element-component-$cmsElementTechnicalName.html.twig';
+import './cms-element-component-$cmsElementTechnicalName.scss'
+const {Component}=Shopware;
+Component.register(\"sw-cms-el-component-$cmsElementTechnicalName\", {
+    template,
+}";
         return $content;
     }
 }

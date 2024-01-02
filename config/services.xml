@@ -26,18 +26,35 @@
                 <argument type="service" id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameScss"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockComponentIndexJs"/>
                 <argument type="service" id="App\Service\Blocks\CmsBlockPreviewIndexJs"/>
+                <argument type="service" id="App\Service\Blocks\BlocksIndexJs"/>
                 <argument type="service" id="App\Service\Element\CmsElementPreviewIndexJs"/>
                 <argument type="service" id="App\Service\Element\CmsElementComponentIndexJs"/>
                 <argument type="service" id="App\Service\Element\CmsElementConfigIndexJs"/>
                 <argument type="service" id="App\Service\Element\CmsElementComponentCmsElementTechnicalNameHtmlTwig"/>
                 <argument type="service" id="App\Service\Element\CmsElementPreviewCmsElementTechnicalNameHtmlTwig"/>
                 <argument type="service" id="App\Service\Element\CmsElementConfigCmsElementTechnicalNameHtmlTwig"/>
+                <argument type="service" id="App\Service\Element\CmsElementIndexJs"/>
+                <argument type="service" id="App\Service\Element\CmsElementComponentCmsElementTechnicalNameScss"/>
+                <argument type="service" id="App\Service\Element\CmsElementConfigCmsElementTechnicalNameScss"/>
+                <argument type="service" id="App\Service\Element\CmsElementPreviewCmsElementTechnicalNameScss"/>
+                <argument type="service" id="App\Service\Element\ElementsIndexJs"/>
+                <argument type="service" id="App\Service\Views\ViewCmsBlockCmsBlocksTechnicalNameHtmlTwig"/>
+                <argument type="service" id="App\Service\Views\ViewCmsElementCmsElementTechnicalNameHtmlTwig"/>
+                <argument type="service" id="App\Service\Snippet\SnippetDe"/>
+                <argument type="service" id="App\Service\Snippet\SnippetGb"/>
+                <argument type="service" id="App\Service\Plugin\ConfigPluginLogo"/>
+                <argument type="service" id="App\Service\Plugin\ConfigServicesXml"/>
+                <argument type="service" id="App\Service\Plugin\MainJs"/>
+                <argument type="service" id="App\Service\Storefront\CmsElementComponent_CmsElementTechnicalNameScss"/>
+                <argument type="service" id="App\Service\Storefront\CmsElementBaseScss"/>
             </argument>
         </service>
-        <service id="App\Service\Plugin\CreateMainJs" public="true"/>
+        <service id="App\Service\Plugin\MainJs" public="true"/>
         <service id="App\Service\Plugin\CreatePluginIndexPhp" public="true"/>
         <service id="App\Helper\FormatConverter" public="true"/>
         <service id="App\Service\Plugin\CreateComposerJson" public="true"/>
+        <service id="App\Service\Plugin\ConfigPluginLogo" public="true"/>
+        <service id="App\Service\Plugin\ConfigServicesXml" public="true"/>
         <service id="App\Service\Blocks\BlockIndexJs" public="true"/>
         <service id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig" public="true"/>
         <service id="App\Service\Blocks\CmsBlockComponentCmsBlocksTechnicalNameScss" public="true"/>
@@ -45,12 +62,25 @@
         <service id="App\Service\Blocks\CmsBlockPreviewCmsBlocksTechnicalNameScss" public="true"/>
         <service id="App\Service\Blocks\CmsBlockComponentIndexJs" public="true"/>
         <service id="App\Service\Blocks\CmsBlockPreviewIndexJs" public="true"/>
+        <service id="App\Service\Blocks\BlocksIndexJs" public="true"/>
         <service id="App\Service\Element\CmsElementPreviewIndexJs" public="true"/>
         <service id="App\Service\Element\CmsElementComponentIndexJs" public="true"/>
         <service id="App\Service\Element\CmsElementConfigIndexJs" public="true"/>
         <service id="App\Service\Element\CmsElementComponentCmsElementTechnicalNameHtmlTwig" public="true"/>
         <service id="App\Service\Element\CmsElementPreviewCmsElementTechnicalNameHtmlTwig" public="true"/>
         <service id="App\Service\Element\CmsElementConfigCmsElementTechnicalNameHtmlTwig" public="true"/>
+        <service id="App\Service\Element\CmsElementPreviewCmsElementTechnicalNameScss" public="true"/>
+        <service id="App\Service\Element\CmsElementConfigCmsElementTechnicalNameScss" public="true"/>
+        <service id="App\Service\Element\CmsElementComponentCmsElementTechnicalNameScss" public="true"/>
+        <service id="App\Service\Storefront\CmsElementComponent_CmsElementTechnicalNameScss" public="true"/>
+        <service id="App\Service\Storefront\CmsElementBaseScss" public="true"/>
+        <service id="App\Service\Element\ElementsIndexJs" public="true"/>
+        <service id="App\Service\Element\CmsElementIndexJs" public="true"/>
+        <service id="App\Service\Views\ViewCmsBlockCmsBlocksTechnicalNameHtmlTwig" public="true"/>
+        <service id="App\Service\Views\ViewCmsElementCmsElementTechnicalNameHtmlTwig" public="true"/>
+        <service id="App\Service\Snippet\SnippetDe" public="true"/>
+        <service id="App\Service\Snippet\SnippetGb" public="true"/>
+
 
         <!--XXXXXXXXXXXXXXXXXParameter Injection in Service XXXXXXXXXXXXXXXXXXXX-->
         <service id="App\Service\FolderStructure" public="true">

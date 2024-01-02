@@ -28,8 +28,8 @@ class CmsElementPreviewCmsElementTechnicalNameHtmlTwig implements FileCreatorInt
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
-        $pluginTechnicalNameImage=$formData["pluginTechnicalNameImage"];
-        $pluginTechnicalNameImageImage = $this->formatConverter->removeHyphens($cmsElementTechnicalName);
+        $pluginTechnicalNameImage=$formData["pluginTechnicalName"];
+        $pluginTechnicalNameImageImage = $this->formatConverter->removeHyphens($pluginTechnicalNameImage);
         $twigTagCmsElementTechnicalName = $this->formatConverter->convertToTwigTags($cmsElementTechnicalName);
         $content = "{% block $twigTagCmsElementTechnicalName %}
             <div class=\"$cmsElementTechnicalName-preview\">

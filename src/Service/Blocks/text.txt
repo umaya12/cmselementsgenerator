@@ -38,4 +38,40 @@
         cmsBlocksLabelDE
         cmsBlocksLabelEN
         cmsBlocksCategory
+-----
+
+fieldId
+fieldTechnicalName
+fieldLabel
+fieldComponent
+    sw-text-field
+    ---------------------
+    SwTextField
+    ---------------
+    sw-text-editor
+    ---------------------
+    SwTextEditor
+    ---------------
+    sw-media-field
+    ---------------------
+    SwMediaField
+    ---------------
+    sw-media-upload-v2
+    ---------------------
+    SwMediaUploadV2
+    ---------------
+    sw-checkbox-field
+    ---------------------
+    SwCheckboxField
+    ---------------
+    sw-switch-field
+    ---------------------
+    SwSwitchField
+    ---------------
+    sw-colorpicker
+    ---------------------
+    SwColorPicker
+    ---------------
+fieldRequired
+
 

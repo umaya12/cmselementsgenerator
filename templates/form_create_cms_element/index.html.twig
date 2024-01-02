@@ -256,13 +256,14 @@
 							</div>
 
 							<div class="col-3">
-								<label for="fieldTechnicalType"
-										 class="form-label">Field Technical Type</label>
-								<select name="fieldTechnicalType"
+								<label for="fieldComponent"
+										 class="form-label">Field-Component</label>
+								<select name="fieldComponent"
 										  class="form-select"
-										  id="fieldTechnicalType"
-										  v-model="cmsForm.stepThree.fields.fieldTechnicalType">
-									<option v-for="type in formOptions.stepThree.fieldTypes"
+										  id="fieldComponent"
+										  v-model="cmsForm.stepThree.fields.fieldComponent">
+								  <option selected disabled>Open this select menu</option>
+									<option v-for="type in formOptions.stepThree.fieldComponents"
 											  :value="type">{{type}}</option>
 								</select>
 							</div>
@@ -300,7 +301,7 @@
 								<tr>
 									<th>Field Technical Name</th>
 									<th>Field Label</th>
-									<th>Field Technical Type</th>
+									<th>Field-Component</th>
 									<th>Is Required?</th>
 									<th>Remove</th>
 								</tr>
@@ -311,7 +312,7 @@
 								<tr v-for="field in cmsForm.stepThree.fields">
 									<td>{{field.fieldTechnicalName}}</td>
 									<td>{{field.fieldLabel}}</td>
-									<td>{{field.fieldTechnicalType}}</td>
+									<td>{{field.fieldComponent}}</td>
 									<td>{{field.fieldRequired? 'ja':'nein' }}</td>
 									<td class="d-flex justify-content-center align-items-center"> <button
 												  @click="removeField(field.fieldId)"

@@ -26,13 +26,12 @@ class CmsElementPreviewIndexJs implements FileCreatorInterface
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
-        $content = "        import template from './cms-element-preview-$cmsElementTechnicalName.html.twig';
-        import './cms-element-preview-$cmsElementTechnicalName.scss'
-        const {Component}=Shopware;
-        Component.register(\"sw-cms-el-preview-$cmsElementTechnicalName\", {
-        template,
-        }
-        ";
+        $content = "import template from './cms-element-preview-$cmsElementTechnicalName.html.twig';
+import './cms-element-preview-$cmsElementTechnicalName.scss'
+const {Component}=Shopware;
+Component.register(\"sw-cms-el-preview-$cmsElementTechnicalName\", {
+    template,
+}";
         return $content;
     }
 }

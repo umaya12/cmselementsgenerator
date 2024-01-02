@@ -218,6 +218,26 @@ public function getContent($cmsBlocksTechnicalName)
     return $content;
 }
 
+او في طريقة تانية Heredoc-Syntax
+هل طريقة بتساهدك كمان في حال كان عندك رمز على شكل متغير ولكنه غير ليس متغير فاريابل بس هوه هيك متل @tc
+    $components[] = <<<EOT
+<sw-text-field
+    :label="\$tc('sw-cms.elements.image.config.label.minHeight')"
+/>
+EOT;
+
+او طريقة Nowdoc-Syntax
+الهم هنا ان يكون الكود في الاسفل بمحاذاة ال  EOTالسفلية
+    $components[] = <<<'EOT'
+<sw-text-field
+    :label="$tc('sw-cms.elements.image.config.label.minHeight')"
+/>
+EOT;
+
+
+
+
+
 ------------- - ------------
 مشكلة في حال اردنا كتابة متغير و لازم يكون ملزوق بنص بدون فراغات
 {% block  twigTagCmsElementTechnicalName _config %}
@@ -373,3 +393,73 @@ Methods
 
 ----------------php ------------
 str_replace("Was suchst","mit was willst du ersetzen", $text der geändert wird )
+------------------php------------
+كتابة شرط داخل متغير
+تخزين شرط داخل متغير
+$fieldValue = $field->fieldComponent === 'sw-switch-field' ? 'false' : "''";
+
+--------------------------
+
+function loopeMich($datas)
+{
+   foreach ($datas as $data) {
+      if ($data["fieldTechnicalType"] == "color") {
+         echo ("Ja ist Color");
+      } elseif ($data["fieldTechnicalType"] == "Media-Simple") {
+         echo ("Ja genau das ist Media");
+      }
+   }
+}
+
+// loopeMich($datas);
+
+// Mit Map
+
+function behandeln($data)
+{
+   if ($data["fieldTechnicalType"] == "color") {
+      echo ("Ja ist Color");
+   } elseif ($data["fieldTechnicalType"] == "Media-Simple") {
+      echo ("Ja genau das ist Media");
+   }
+}
+
+$result=array_map("behandeln", $datas);
+----------------------------------------------------------------------
+
+
+PHP
+
+
+in php gibt es clase_exists , file_exists,  was gibt auch solche statment ?
+
+function_exists(): Prüft, ob eine Funktion definiert ist.	if (function_exists('meineFunktion'))
+
+constant_exists() oder defined(): Prüft, ob eine Konstante definiert ist.	if (defined('MEINE_KONSTANTE'))
+
+interface_exists(): Prüft, ob eine Schnittstelle definiert ist.
+
+trait_exists(): Prüft, ob ein Trait definiert ist.
+
+ method_exists(): Überprüft, ob eine bestimmte Methode in einer Klasse oder einem Objekt existiert.	if (method_exists($objekt, 'methode'))
+
+property_exists(): Überprüft, ob eine bestimmte Eigenschaft in einer Klasse oder einem Objekt existiert.	if (property_exists('MeineKlasse', 'eigenschaft'))
+
+is_dir(): Überprüft, ob der angegebene Pfad ein Verzeichnis ist.
+
+is_file(): Überprüft, ob der angegebene Pfad eine reguläre Datei ist.	if (is_file('meineDatei.txt'))
+
+array_key_exists()  if (array_key_exists('name', $array))
+is_null(): Überprüft, ob eine Variable den Wert NULL hat.
+
+is_numeric(): Überprüft, ob eine Variable eine Zahl oder eine numerische Zeichenkette ist.	if (is_numeric($variable))
+
+is_array(): Überprüft, ob eine Variable ein Array ist.		if (is_array($variable))
+
+
+is_object(): Überprüft, ob eine Variable ein Objekt ist.   if (is_object($variable))
+
+
+
+
+

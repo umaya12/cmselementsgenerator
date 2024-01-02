@@ -7,21 +7,28 @@ use App\Service\FormDataManager;
 
 class ConfigServicesXml implements FileCreatorInterface{
 
-    public function __construct(
-        private FormDataManager $cmsFormDataManager,
-    ) {
-    }
 
     public function createFile(string $path): void
     {
-        $formData = $this->cmsFormDataManager->getCmsFormData();
-
-        // TODO: Implement createFile() method.
+         if (strpos($path, "config/services.xml")) {
+            file_put_contents($path, $this->getContent());
+        }
     }
 
     public function getContent(): string
     {
-        // TODO: Implement getContent() method.
-        return "";
+        $content =
+<<<'EOT'
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+    </services>
+</container> 
+EOT;
+        return $content;
     }
 }

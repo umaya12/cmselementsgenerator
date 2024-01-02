@@ -27,10 +27,6 @@ class FormCreateCmsElementController extends AbstractController
     public function index(Request $request): Response
     {
         // Form Data Exportieren
-//        $pluginTechnicalName = $request->request->get('pluginTechnicalName');
-//        $cmsElementFormData = $request->request->all();
-//        $pluginTechnicalName = $request->request->get('pluginTechnicalName');
-//        $cmsElementFormData = $request->request->all();
         $cmsElementForm = json_decode($request->getContent());
 
         $cmsElementFormData = [];
@@ -45,7 +41,6 @@ class FormCreateCmsElementController extends AbstractController
                     }
                 }
             }
-
             $this->formDataManager->storeCmsElementFromData($cmsElementFormData,$cmsFields);
             // get folder structor
             $structures = $this->cmsElementStructure->getCmsElementStructure();
@@ -61,38 +56,11 @@ class FormCreateCmsElementController extends AbstractController
             "Hello"=>"Hello",
         ]);
 
-        // dump($structure);
-        // exit;
+
 
     }
 
-//    #[Route('/testemich/{cmsElementTechnicalName}', name: 'form_create_cms_element')]
-//    public function convertToTwigTags($cmsElementTechnicalName)
-//    {
-////        $data = "HalloIchBinMuhmmad Muhamm-adK";
-////        $convertToArray = str_split($test);
-//        $result = "";
-//        $dataConverted = str_split($cmsElementTechnicalName);
-//        for ($i = 0; $i < count($dataConverted); $i++) {
-//            $word = $dataConverted[$i];
-//            if ($word == " ") {
-//                $result .= "";
-//                continue;
-//            }
-//            if ($word === "-") {
-//                $result .= "_";
-//                continue;
-//            }
-//            if (ctype_upper($word)) {
-//                if ($i !== 0) {
-//                    $result .= "_";
-//                }
-//            }
-//            $word = strtolower($word);
-//            $result .= $word;
-//        }
-//        return new Response($result);
-//    }
+
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 //Need Only Content
-namespace App\Service\Element;
+namespace App\Service\Storefront;
 
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
@@ -11,7 +11,7 @@ class CmsElementComponent_CmsElementTechnicalNameScss
 
     public function __construct(
         private FormDataManager $cmsFormDataManager,
-    ) {
+     ) {
     }
 
     public function createFile(string $path): void

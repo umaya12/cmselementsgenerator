@@ -15,8 +15,9 @@ class ConfigPluginLogo implements FileCreatorInterface{
     public function createFile(string $path): void
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
-
-        // TODO: Implement createFile() method.
+        if (strpos($path, "plugin.png")) {
+            file_put_contents($path, $this->getContent());
+        }
     }
 
     public function getContent(): string

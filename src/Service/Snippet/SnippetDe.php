@@ -1,11 +1,13 @@
 <?php
-
+//تم مراعاة موضوع انها فقط للـ CMS Element
+//Need Only Content
 namespace App\Service\Snippet;
 
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class SnippetDe implements FileCreatorInterface{
+class SnippetDe implements FileCreatorInterface
+{
 
     public function __construct(
         private FormDataManager $cmsFormDataManager,
@@ -14,14 +16,14 @@ class SnippetDe implements FileCreatorInterface{
 
     public function createFile(string $path): void
     {
-        $formData = $this->cmsFormDataManager->getCmsFormData();
-
-        // TODO: Implement createFile() method.
+        if (strpos($path, "sw-cms/snippet/de-DE.json")) {
+            file_put_contents($path, $this->getContent());
+        }
     }
 
     public function getContent(): string
     {
-        // TODO: Implement getContent() method.
-        return "";
+        $formData = $this->cmsFormDataManager->getCmsFormData();
+        return "Need Only Content";
     }
 }

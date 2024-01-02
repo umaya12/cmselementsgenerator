@@ -62,15 +62,14 @@ const createCmsForm = createApp({
                 },
                 stepThree: {
                     status: true,
-                    fieldTypes: {
-                        "Text-Editor": "Text-Editor",
-                        "Input-Text": "Input-Text",
-                        "color": "color",
-                        "Media-Simple": "Media-Simple",
-                        "Media-Advanced": "Media-Advanced",
-                        "input-check": "input-check",
-                        "input-number": "input-number",
-                        "input-slide": "input-slide",
+                    fieldComponents: {
+                        "sw-text-field": "sw-text-field",
+                        "sw-text-editor": "sw-text-editor",
+                        "sw-media-field": "sw-media-field",
+                        "sw-media-upload-v2": "sw-media-upload-v2",
+                        "sw-checkbox-field": "sw-checkbox-field",
+                        "sw-switch-field": "sw-switch-field",
+                        "sw-colorpicker": "sw-colorpicker",
                     },
                 },
                 stepFour: {
@@ -111,7 +110,6 @@ const createCmsForm = createApp({
                     cmsElementTechnicalName: false
                 });
             }
-
             return errors;
         },
         isValid() {
@@ -119,7 +117,7 @@ const createCmsForm = createApp({
         },
     },
     created() {
-        console.log(this.cmsForm)
+
     },
     methods: {
         addFields() {
@@ -128,12 +126,12 @@ const createCmsForm = createApp({
                 fieldId: fieldCounter,
                 fieldTechnicalName: this.cmsForm.stepThree.fields.fieldTechnicalName,
                 fieldLabel: this.cmsForm.stepThree.fields.fieldLabel,
-                fieldTechnicalType: this.cmsForm.stepThree.fields.fieldTechnicalType,
+                fieldComponent: this.cmsForm.stepThree.fields.fieldComponent,
                 fieldRequired: this.cmsForm.stepThree.fields.fieldRequired,
             });
-            this.cmsForm.stepThree.fields.fieldTechnicalName = "",
+               this.cmsForm.stepThree.fields.fieldTechnicalName = "",
                 this.cmsForm.stepThree.fields.fieldLabel = "",
-                this.cmsForm.stepThree.fields.fieldTechnicalType = "",
+                 this.cmsForm.stepThree.fields.fieldComponent="",
                 this.cmsForm.stepThree.fields.fieldRequired = false
 
         },
@@ -151,7 +149,6 @@ const createCmsForm = createApp({
         },
         removeField(fieldId) {
             let index = this.cmsForm.stepThree.fields.findIndex(field => field.fieldId == fieldId);
-
             if (index !== -1) {
                 this.cmsForm.stepThree.fields.splice(index, 1);
             }

@@ -5,6 +5,7 @@ namespace App\Service\Element;
 
 use App\Helper\FormatConverter;
 use App\Interface\FileCreatorInterface;
+use App\Service\Element\SwComponents\ComponentsFactory;
 use App\Service\FormDataManager;
 
 class CmsElementConfigCmsElementTechnicalNameHtmlTwig implements FileCreatorInterface {
@@ -12,6 +13,7 @@ class CmsElementConfigCmsElementTechnicalNameHtmlTwig implements FileCreatorInte
     public function __construct(
         private FormDataManager $cmsFormDataManager,
         private FormatConverter $formatConverter,
+        private ComponentsFactory $componentsFactory
     ) {
     }
 
@@ -28,11 +30,12 @@ class CmsElementConfigCmsElementTechnicalNameHtmlTwig implements FileCreatorInte
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
+        $components=$this->componentsFactory->componentsGenerator();
         $twigTagCmsElementTechnicalName = $this->formatConverter->convertToTwigTags($cmsElementTechnicalName);
         $content = "{% block {$twigTagCmsElementTechnicalName}_config %}
-                <sw-container>
-            
-                </sw-container>
+    <sw-container>
+    $components
+    </sw-container>
 {% endblock %}";
         return $content;
     }

@@ -5,7 +5,7 @@ namespace App\Service\Plugin;
 
 use App\Interface\FileCreatorInterface;
 
-class CreateMainJs implements FileCreatorInterface {
+class MainJs implements FileCreatorInterface {
 
 
     public function createFile(string $path): void {
@@ -18,7 +18,7 @@ class CreateMainJs implements FileCreatorInterface {
 
     public function getContent(): string
     {
-        // TODO: Implement getContent() method.
-        return "";
+        $content="import './module/sw-cms';";
+        return $content;
     }
 }

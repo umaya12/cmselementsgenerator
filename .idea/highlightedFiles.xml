@@ -4,19 +4,39 @@
     <files>
       <node color="4" path="$PROJECT_DIR$/src/Controller/FormCreateCmsElementController.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Blocks/BlockIndexJs.php" />
+      <node color="5" path="$PROJECT_DIR$/src/Service/Blocks/BlocksIndexJs.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Blocks/CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig.php" />
+      <node color="5" path="$PROJECT_DIR$/src/Service/Blocks/CmsBlockComponentCmsBlocksTechnicalNameScss.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Blocks/CmsBlockComponentIndexJs.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Blocks/CmsBlockPreviewCmsBlocksTechnicalNameHtmlTwig.php" />
+      <node color="5" path="$PROJECT_DIR$/src/Service/Blocks/CmsBlockPreviewCmsBlocksTechnicalNameScss.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Blocks/CmsBlockPreviewIndexJs.php" />
       <node color="1" path="$PROJECT_DIR$/src/Service/CmsElementFilesContent" />
       <node color="1" path="$PROJECT_DIR$/src/Service/CmsElementFilesContent/CreateTwigDatei.php" />
+      <node color="5" path="$PROJECT_DIR$/src/Service/Element/CmsElementComponent_CmsElementTechnicalNameScss.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementComponentCmsElementTechnicalNameHtmlTwig.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementComponentCmsElementTechnicalNameScss.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementComponentIndexJs.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementConfigCmsElementTechnicalNameHtmlTwig.php" />
-      <node color="5" path="$PROJECT_DIR$/src/Service/Element/CmsElementConfigIndexJs.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementConfigCmsElementTechnicalNameScss.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementConfigIndexJs.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementIndexJs.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementPreviewCmsElementTechnicalNameHtmlTwig.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementPreviewCmsElementTechnicalNameScss.php" />
       <node color="4" path="$PROJECT_DIR$/src/Service/Element/CmsElementPreviewIndexJs.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Element/ElementsIndexJs.php" />
       <node color="1" path="$PROJECT_DIR$/src/Service/Example_" />
+      <node color="5" path="$PROJECT_DIR$/src/Service/Plugin/ConfigPluginLogo.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Plugin/ConfigServicesXml.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Plugin/CreateComposerJson.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Plugin/CreatePluginIndexPhp.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Plugin/MainJs.php" />
+      <node color="5" path="$PROJECT_DIR$/src/Service/Snippet/SnippetDe.php" />
+      <node color="5" path="$PROJECT_DIR$/src/Service/Snippet/SnippetGb.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Storefront/CmsElementBaseScss.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Storefront/CmsElementComponent_CmsElementTechnicalNameScss.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Views/ViewCmsBlockCmsBlocksTechnicalNameHtmlTwig.php" />
+      <node color="4" path="$PROJECT_DIR$/src/Service/Views/ViewCmsElementCmsElementTechnicalNameHtmlTwig.php" />
       <node color="7" path="$PROJECT_DIR$/templates" />
     </files>
     <colors>
