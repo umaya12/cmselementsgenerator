@@ -1,0 +1,24 @@
+{
+    "name": "ap/cms-image-text",
+    "description": "Plugin Description",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "345345",
+    "authors": [
+        {
+            "name": "apollon GmbH+Co. KG"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MuhammadTestELement\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "MuhammadTestELement\\MuhammadTestELement",
+        "label": {
+            "de-DE": "Plugin Label (DE) ",
+            "en-GB": "Wie wird den Plugin in englisch bezeichnet"
+        }
+    }
+}

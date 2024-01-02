@@ -9,7 +9,7 @@ class CreateMainJs implements FileCreatorInterface {
 
 
     public function createFile(string $path): void {
-        if(strpos($path,'main.js')){
+        if(strpos($path,'src/main.js')){
             // Logik zum Erstellen einer main.js-Datei
             file_put_contents($path, "// Ihr JavaScript-Code");
         }

@@ -5,8 +5,7 @@ namespace App\Service\Element;
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
-class CmsElementComponent_CmsElementTechnicalNameScss
-    implements FileCreatorInterface
+class ElementsIndexJs implements FileCreatorInterface
 {
 
     public function __construct(
@@ -17,6 +16,7 @@ class CmsElementComponent_CmsElementTechnicalNameScss
     public function createFile(string $path): void
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
+
         // TODO: Implement createFile() method.
     }
 

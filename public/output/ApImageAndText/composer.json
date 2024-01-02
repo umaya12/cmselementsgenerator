@@ -1,0 +1,24 @@
+{
+    "name": "ap/cms-image-text",
+    "description": "Wie wird den Plugin beschreiben in Admin",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "apollon GmbH+Co. KG"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ApImageAndText\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "ApImageAndText\\ApImageAndText",
+        "label": {
+            "de-DE": "Wie wird den Plugin in deutsch bezeichnet ",
+            "en-GB": "Wie wird den Plugin in englisch bezeichnet"
+        }
+    }
+}

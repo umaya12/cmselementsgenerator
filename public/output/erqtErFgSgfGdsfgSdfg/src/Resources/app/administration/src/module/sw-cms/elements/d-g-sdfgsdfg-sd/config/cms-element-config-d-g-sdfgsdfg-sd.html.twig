@@ -1,0 +1,11 @@
+{% block d_g_sdfgsdfg_sd_config %}
+    <sw-container>
+            <sw-text-field
+              v-model="element.config.tex.value"
+              :label="$tc('sw-cms.elements.image.config.texLabel.tex')"
+              :placeholder="$tc('sw-cms.elements.image.config.placeholder.enterMinHeight')"
+              @input="emitChanges"
+        />
+        </sw-text-field>
+    </sw-container>
+{% endblock %}
