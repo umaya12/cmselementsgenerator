@@ -29,7 +29,7 @@ class CreatePluginIndexPhp implements FileCreatorInterface
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $pluginTechnicalName = $formData['pluginTechnicalName'];
         $content =
-            " <?php declare(strict_types=1);
+            "<?php declare(strict_types=1);
         
         namespace $pluginTechnicalName;
         

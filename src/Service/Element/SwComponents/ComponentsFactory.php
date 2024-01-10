@@ -58,12 +58,12 @@ class ComponentsFactory
     {
         $defaultConfigs = [];
         foreach ($fieldsData as $fields) {
-//            dump($fields);
+//            dump($fields->fieldRequired);
 //            exit;
             // Bestimmen, ob das Feld erforderlich ist
             $fieldTechnicalName = $fields->fieldTechnicalName;
             $isBoolean = $fields->fieldComponent === 'sw-switch-field' || $fields->fieldComponent === 'sw-checkbox-field' ? 'false' : '';
-            $isRequired = $fields->fieldRequired === true ? 'true' : 'false';
+            $isRequired = isset($fields->fieldRequired) === true ? 'true' : 'false';
             $fieldsContent = "
             $fieldTechnicalName:{
             source:'static',
@@ -118,7 +118,7 @@ class ComponentsFactory
         {% endif %}";
                     break;
                 default:
-                    $twigCode.=  "   {% set $fieldTechnicalName = element.config.$fieldTechnicalName.value %}\n";
+                    $twigCode.=  "{% set $fieldTechnicalName = element.config.$fieldTechnicalName.value %}\n";
                     break;
             }
         }

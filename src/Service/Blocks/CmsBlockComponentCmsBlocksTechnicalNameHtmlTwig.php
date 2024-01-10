@@ -30,13 +30,13 @@ class CmsBlockComponentCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInte
         $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
         $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
         $twigTagCmsBlocksTechnicalName = $this->formatConverter->convertToTwigTags($cmsBlocksTechnicalName);
-        $content = "
-            {% block $twigTagCmsBlocksTechnicalName %}
-        <div class=\"sw-cms-block-$cmsBlocksTechnicalName\">
-            <slot name=\"$cmsElementTechnicalName\"></slot>
-        </div>
-        {% endblock %}
-        ";
+        $cmsElementTechnicalNameSlotName=$this->formatConverter->convertToCamelCase($cmsElementTechnicalName,true);
+
+        $content = "{% block $twigTagCmsBlocksTechnicalName %}
+<div class=\"sw-cms-block-$cmsBlocksTechnicalName\">
+    <slot name=\"$cmsElementTechnicalNameSlotName\"></slot>
+</div>
+{% endblock %}";
         return $content;
     }
 }

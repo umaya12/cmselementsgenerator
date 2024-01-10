@@ -1,0 +1,1 @@
+import './text-Image/api-image-text'

@@ -8,7 +8,7 @@
 	<div class="container"
 		  id="createCmsForm">
 		<div class="form-wrapper m-5 py-5">
-			<form @submit.prevent="sendData"
+			<form @submit.prevent="sendData" id="cmsForm"
 					enctype="multipart/form-data"
 					class="form d-flex justify-content-center align-items-center flex-column">
 				<div class="navigation d-flex align-items-center"
@@ -68,7 +68,8 @@
 						</div>
 
 
-						<div class="mb-3">
+						<div class="mb-3 row">
+						<div class="col-8">
 							<label class="form-label"
 									 for="pluginDescription">Plugin Description</label>
 							<input type="text"
@@ -77,8 +78,22 @@
 									 class="form-control"
 									 aria-describedby="pluginDescriptionHelper"
 									 v-model="cmsForm.stepOne.pluginDescription">
-							<div id="pluginDescriptionHelper"
+								<div id="pluginDescriptionHelper"
 								  class="form-text">Wie wird den Plugin beschreiben in Admin </div>
+								</div>
+						<div class="col-4 d-flex justify-content-center align-items-center">
+						<label class="form-check-label" for="isEnglishVersionActive">Enable English Version</label>
+
+						<input type="checkbox"
+						value="true"
+						name="isEnglishVersionActive"
+						id="isEnglishVersionActive"
+						class="form-check-input"
+						value="true"
+						v-model="cmsForm.stepOne.isEnglishVersionActive">
+
+							</div>
+
 						</div>
 
 
@@ -100,6 +115,7 @@
 										 for="pluginLabelEN">Plugin Label (EN)</label>
 								<input type="text"
 										 name="pluginLabelEN"
+										 :disabled="cmsForm.stepOne.isEnglishVersionActive==false"
 										 id="pluginLabelEN"
 										 class="form-control"
 										 aria-describedby="pluginLabelDEHelper"
@@ -157,6 +173,7 @@
 										 for="cmsElementLabelEN">Element Label (EN)</label>
 								<input type="text"
 										 name="cmsElementLabelEN"
+										 :disabled="cmsForm.stepOne.isEnglishVersionActive==false"
 										 id="cmsElementLabelEN"
 										 class="form-control"
 										 aria-describedby="cmsElementLabelENHelper"
@@ -262,7 +279,7 @@
 										  class="form-select"
 										  id="fieldComponent"
 										  v-model="cmsForm.stepThree.fields.fieldComponent">
-								  <option selected disabled>Open this select menu</option>
+<!--								  <option selected disabled>Open this select menu</option>-->
 									<option v-for="type in formOptions.stepThree.fieldComponents"
 											  :value="type">{{type}}</option>
 								</select>
@@ -333,18 +350,37 @@
 						  class="tabs mt-5">
 						<h2 class="headline-line mb-3">CMS Blocks</h2>
 						<!-- {#    cms Block TechnicalName #} -->
-						<div class="mb-3">
-							<label class="form-label"
-									 for="cmsBlocksTechnicalName">Technical Name</label>
-							<input type="text"
-									 name="cmsBlocksTechnicalName"
-									 id="cmsBlocksTechnicalName"
-									 class="form-control"
-									 v-model="cmsForm.stepFour.cmsBlocksTechnicalName"
-									 @change="transformCmsName('stepFour.cmsBlocksTechnicalName')">
+						<div class="mb-3 row">
+												<div class="col-7">
+													 <label class="form-label"
+															 for="cmsBlocksTechnicalName">Technical Name</label>
+													<input type="text"
+															 name="cmsBlocksTechnicalName"
+															 id="cmsBlocksTechnicalName"
+															 class="form-control"
+															 v-model="cmsForm.stepFour.cmsBlocksTechnicalName"
+															 @change="transformCmsName('stepFour.cmsBlocksTechnicalName')">
+												</div>
+										 	<!-- {#    Blocks Category #} -->
+											<div class="col-5">
+												<label class="form-label"
+														 for="cmsBlocksCategory">CMS block category</label>
+												<select type="file"
+														  name="cmsBlocksCategory"
+														  id="cmsBlocksCategory"
+														  v-model="cmsForm.stepFour.cmsBlocksCategory"
+														  class="form-select">
+													<option v-for="cmsBlocksCategoryList in formOptions.stepFour.cmsBlocksCategoryList"
+															  :value="cmsBlocksCategoryList"
+															  :key="cmsBlocksCategoryList">{{cmsBlocksCategoryList}}</option>
+												</select>
+											</div>
+
 						</div>
 
-						{# CMS Blocks label #}
+
+
+					<!-- {#  CMS Blocks label #} -->
 						<div class="mb-3 row">
 
 							<div class="col-6">
@@ -364,6 +400,7 @@
 										 for="cmsBlocksLabelEN">Blocks Label (EN)</label>
 								<input type="text"
 										 name="cmsBlocksLabelEN"
+										 :disabled="cmsForm.stepOne.isEnglishVersionActive==false"
 										 id="cmsBlocksLabelEN"
 										 class="form-control"
 										 v-model="cmsForm.stepFour.cmsBlocksLabelEN">
@@ -371,26 +408,8 @@
 
 						</div>
 
-						<!-- {#    Blocks Category #} -->
-						<div class="mb-3">
-							<label class="form-label"
-									 for="cmsBlocksCategory">CMS block category</label>
-							<select type="file"
-									  name="cmsBlocksCategory"
-									  id="cmsBlocksCategory"
-									  v-model="cmsForm.stepFour.cmsBlocksCategory"
-									  class="form-select">
-								<option v-for="cmsBlocksCategoryList in formOptions.stepFour.cmsBlocksCategoryList"
-										  :value="cmsBlocksCategoryList"
-										  :key="cmsBlocksCategoryList">{{cmsBlocksCategoryList}}</option>
-							</select>
-						</div>
-						<div class="row py-4 justify-content-between">
-							<button v-show="currentTab==4"
-									  id="send"
-									  type="submit"
-									  class="btn btn-info btn-lg btn-block">Senden</button>
-						</div>
+
+
 					</div>
 				</div>
 
@@ -408,7 +427,19 @@
 
 			<div v-show="infoMsg.status==true"
 				  class="alert alert-info"
-				  id="infoMsg">{{infoMsg.msg}}</div>
+				  id="infoMsg">{{infoMsg.msg}}
+				  <hr>
+						<ul class="list-group d-flex flex-row gap-5">
+						<div>
+								 <li class="list-inline" v-for="(value,key) in cmsForm.stepOne"> <strong>{{key}}	</strong>	 : {{value}}</li>
+								  <li class="list-inline" v-for="(value,key) in cmsForm.stepTwo">	<strong>{{key}}</strong> : {{value}}</li>
+						</div>
+						 <div>
+								 <li class="list-inline" v-for="(value,key) in cmsForm.stepFour">	<strong>{{key}}</strong> : {{value}}</li>
+						</div>
+						</ul>
+
+				  </div>
 
 			<div v-show="errorMsg.status==true"
 				  class="alert alert-danger"
@@ -416,9 +447,12 @@
 
 			<div class="row py-4 justify-content-between">
 				<div class="col-auto">
-					<button type="button"
+					<button
+								v-if="currentTab>1"
+								type="button"
 							  id="prev"
 							  class="btn btn-secondary"
+
 							  @click="goToPreviousTab()">Prevers</button>
 				</div>
 				<div class="col-auto ">
@@ -428,6 +462,14 @@
 							  class="btn btn-info"
 							  :disabled="this.errorMsg.status"
 							  id="next">Next</button>
+
+							<input v-show="currentTab==4"
+									  type="submit"
+									  form="cmsForm"
+										value="Anlegen"
+									  class="btn btn-info">
+
+
 				</div>
 			</div>
 		</div>

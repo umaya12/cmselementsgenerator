@@ -226,6 +226,15 @@ public function getContent($cmsBlocksTechnicalName)
 />
 EOT;
 
+في حل تاني ايضاً مشان المتغيرات
+$result .= <<<EOT
+    "{$value['fieldTechnicalName']}": {
+        "label": "{$value['fieldLabel']}"
+    },
+EOT;
+
+
+
 او طريقة Nowdoc-Syntax
 الهم هنا ان يكون الكود في الاسفل بمحاذاة ال  EOTالسفلية
     $components[] = <<<'EOT'

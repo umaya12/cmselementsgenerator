@@ -1,0 +1,28 @@
+         {
+  "ap": {
+    "cms": {
+      "blocks": {
+        "ApiImageText": {
+          "label": "Blocks Label (DE)"
+        }
+      },
+      "elements": {
+        "MkiCmsElement": {
+          "label": "Element Label (DE)",
+          "config":  {
+         "image": {
+            "label": "Bild"
+        },
+        "title": {
+            "label": "Healdine"
+        },
+        "content": {
+            "label": "Inahlt"
+        }
+
+          }
+        }
+      }
+    }
+  }
+}

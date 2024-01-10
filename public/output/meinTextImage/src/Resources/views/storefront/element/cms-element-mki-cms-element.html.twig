@@ -1,0 +1,29 @@
+{% block mki_cms_element %}
+
+   {% set image = element.config.image.value %}
+
+        {% if image %}
+               {% set mediaCollectionimage = searchMedia([image], context.context) %}
+               {% set mediaimage = mediaCollection.get(image) %}
+        {% endif %}
+        {% if mediaimage is defined %}
+           {% sw_thumbnails 'mki-cms-element-thumbnails' with {
+               media: mediaimage,
+               attributes: {
+                   'alt': mediaimage.alt,
+                   'title': mediaimage.title,
+               },
+               sizes: {
+                   'xs': '400px',
+                   'sm': '600px',
+                   'md': '800px',
+                   'lg': '800px',
+                   'xl': '1000px',
+                   'xxl': '1000px'
+               }
+           } %}
+        {% endif %}   {% set title = element.config.title.value|raw %}
+   {% set content = element.config.content.value|raw %}
+
+
+{% endblock %}

@@ -1,0 +1,6 @@
+{% block api_image_text %}
+    {% set element = block.slots.getSlot('MkiCmsElement') %}
+    <div data-cms-element-id="{{ element.id }}" class="col-12">
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+    </div>
+{% endblock %}

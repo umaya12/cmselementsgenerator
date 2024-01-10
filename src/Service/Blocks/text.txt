@@ -27,6 +27,7 @@
         pluginDescription
         pluginLabelDE
         pluginLabelEN
+        isEnglishVersionActive
         cmsElementTechnicalName
         cmsElementLabelDE
         cmsElementLabelEN

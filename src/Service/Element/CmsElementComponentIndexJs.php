@@ -30,7 +30,7 @@ import './cms-element-component-$cmsElementTechnicalName.scss'
 const {Component}=Shopware;
 Component.register(\"sw-cms-el-component-$cmsElementTechnicalName\", {
     template,
-}";
+})";
         return $content;
     }
 }

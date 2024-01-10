@@ -1,6 +1,5 @@
 <?php
 // المعلومات يلي هو جايية من الكوتارولر الرئيسي يلي عبيستقبل معلومات الفورمولار
-
 namespace App\Service;
 
 class FormDataManager
@@ -22,7 +21,7 @@ class FormDataManager
     public function getCmsFieldsData(): array
     {
 //        dump($this->cmsFieldsData[0]);
-
         return $this->cmsFieldsData[0];
     }
+
 }

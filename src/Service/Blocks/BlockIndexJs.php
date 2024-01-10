@@ -2,6 +2,7 @@
 
 namespace App\Service\Blocks;
 
+use App\Helper\FormatConverter;
 use App\Interface\FileCreatorInterface;
 use App\Service\FormDataManager;
 
@@ -9,6 +10,8 @@ class BlockIndexJs implements FileCreatorInterface
 {
     public function __construct(
         private FormDataManager $cmsFormDataManager,
+        private FormatConverter $formatConverter
+
     ) {
     }
 
@@ -40,9 +43,12 @@ class BlockIndexJs implements FileCreatorInterface
         $cmsBlocksLabelDE = $formData['cmsBlocksLabelDE'];
         $cmsBlocksCategory = $formData['cmsBlocksCategory'];
         $cmsElementTechnicalName = $formData['cmsElementTechnicalName'];
+        $cmsBlocksTechnicalNameLabel=$this->formatConverter->convertToCamelCase($cmsBlocksTechnicalName,true);
+        $cmsElementTechnicalNameSlotName=$this->formatConverter->convertToCamelCase($cmsElementTechnicalName,true);
+
         return [
             "name" => "{$cmsBlocksTechnicalName}",
-            "label" => "ap.cms.blocks.{$cmsBlocksLabelDE}.label",
+            "label" => "ap.cms.blocks.{$cmsBlocksTechnicalNameLabel}.label",
             "category" => "{$cmsBlocksCategory}",
             "component" => "sw-cms-block-{$cmsBlocksTechnicalName}",
             "previewComponent" => "sw-cms-preview-{$cmsBlocksTechnicalName}",
@@ -54,7 +60,7 @@ class BlockIndexJs implements FileCreatorInterface
                 "sizingMode" => "boxed",
             ],
             "slots" => [
-                "{$cmsElementTechnicalName}" => "{$cmsElementTechnicalName}",
+                "{$cmsElementTechnicalNameSlotName}" => "{$cmsElementTechnicalName}",
             ],
         ];
     }

@@ -27,9 +27,11 @@ class ViewCmsBlockCmsBlocksTechnicalNameHtmlTwig implements FileCreatorInterface
         $formData = $this->cmsFormDataManager->getCmsFormData();
         $cmsBlocksTechnicalName = $formData["cmsBlocksTechnicalName"];
         $cmsElementTechnicalName = $formData["cmsElementTechnicalName"];
-        $twigTagCmsBlocksTechnicalName = $this->formatConverter->convertToTwigTags($cmsBlocksTechnicalName);        $content =<<<EOT
+        $cmsElementTechnicalNameSlotName=$this->formatConverter->convertToCamelCase($cmsElementTechnicalName,true);
+        $twigTagCmsBlocksTechnicalName = $this->formatConverter->convertToTwigTags($cmsBlocksTechnicalName);
+        $content =<<<EOT
 {% block $twigTagCmsBlocksTechnicalName %}
-    {% set element = block.slots.getSlot('$cmsElementTechnicalName') %}
+    {% set element = block.slots.getSlot('$cmsElementTechnicalNameSlotName') %}
     <div data-cms-element-id="{{ element.id }}" class="col-12">
         {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
     </div>

@@ -1,0 +1,55 @@
+{% block mki_cms_element_config %}
+    <sw-container>
+            <sw-cms-mapping-field
+                v-model="element.config.image"
+                :label="$tc('sw-cms.elements.image.label')"
+                value-types="entity"
+                entity="media"
+        >
+            <sw-media-upload-v2
+                variant="regular"
+                :upload-tag="uploadTag"
+                :source="previewSource"
+                :allow-multi-select="false"
+                 :default-folder="cmsPageState.image"
+                :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')"
+                @media-upload-sidebar-open="onOpenMediaModal"
+                @media-upload-remove-image="onImageRemove"
+            />
+            <sw-upload-listener
+                :upload-tag="uploadTag"
+                auto-upload
+                @media-upload-finish="onImageUpload"
+            />
+        
+            <sw-media-modal-v2
+                v-if="mediaModalIsOpen"
+                variant="regular"
+                :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')"
+                :entity-context="cmsPageState.image"
+                :allow-multi-select="false"
+                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                @media-upload-remove-image="onImageRemove"
+                @media-modal-selection-change="onSelectionChanges"
+                @modal-close="onCloseModal"
+            >
+            </sw-media-modal-v2>
+        
+        </sw-cms-mapping-field>
+        <sw-text-field
+              v-model="element.config.title.value"
+              :label="$tc('ap.cms.elements.MkiCmsElement.config.title.label')"
+              :placeholder="$tc('sw-cms.elements.image.config.placeholder.enterMinHeight')"
+              @input="emitChanges"
+        />
+        </sw-text-field>
+        <sw-text-editor
+              v-model="element.config.content.value"
+              :label="$tc('sw-cms.elements.image.config.contentLabel.content')"
+              :allow-inline-data-mapping="true"
+              sanitize-input
+              @input="emitChanges"
+              @blur="emitChanges"
+        />
+    </sw-container>
+{% endblock %}

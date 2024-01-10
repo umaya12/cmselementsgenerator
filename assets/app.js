@@ -29,6 +29,7 @@ const createCmsForm = createApp({
                     pluginTechnicalName: "",
                     version: "",
                     pluginDescription: "",
+                    isEnglishVersionActive: false,
                     pluginLabelDE: "",
                     pluginLabelEN: "",
                 },
@@ -129,9 +130,9 @@ const createCmsForm = createApp({
                 fieldComponent: this.cmsForm.stepThree.fields.fieldComponent,
                 fieldRequired: this.cmsForm.stepThree.fields.fieldRequired,
             });
-               this.cmsForm.stepThree.fields.fieldTechnicalName = "",
+            this.cmsForm.stepThree.fields.fieldTechnicalName = "",
                 this.cmsForm.stepThree.fields.fieldLabel = "",
-                 this.cmsForm.stepThree.fields.fieldComponent="",
+                this.cmsForm.stepThree.fields.fieldComponent = "",
                 this.cmsForm.stepThree.fields.fieldRequired = false
 
         },
@@ -193,5 +194,20 @@ const createCmsForm = createApp({
             }
         },
     },
+    watch: {
+        cmsForm: {
+            handler(newValue) {
+                // console.log(newVlaue.stepOne.isEnglishVersionActive
+                if(newValue.stepOne.isEnglishVersionActive===false){
+                    this.cmsForm.stepOne.pluginLabelEN = "";
+                    this.cmsForm.stepTwo.cmsElementLabelEN = "";
+                    this.cmsForm.stepFour.cmsBlocksLabelEN = "";
+                }
+            },
+            deep: true,
+            immediate: true
+
+        }
+    }
 });
-createCmsForm.mount("#createCmsForm");
+const vm=createCmsForm.mount("#createCmsForm");

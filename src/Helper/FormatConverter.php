@@ -5,7 +5,7 @@ namespace App\Helper;
 class FormatConverter
 {
 
-    public function convertToTwigTags($cmsElementTechnicalName)
+    public function convertToTwigTags(string $cmsElementTechnicalName)
     {
         $result = "";
         $dataConverted = str_split($cmsElementTechnicalName);
@@ -30,9 +30,24 @@ class FormatConverter
         return $result;
     }
 
-    public function removeHyphens($text)
+    public function removeHyphens(string $text)
     {
-        return str_replace("-", "", $text);
+        $text=str_replace("-", "", $text);
+        return strtolower($text);
+    }
+
+    public function convertToCamelCase(string $text,bool $firstLetterStatus)
+    {
+        $dataConverted = preg_split('/\s|_|-|&/', $text);
+        $result = "";
+        foreach ($dataConverted as $value) {
+            if ($firstLetterStatus === true) {
+                $result .= ucfirst($value);
+            } else {
+                $result .= lcfirst($value);
+            }
+        }
+        return $result;
     }
 
 }

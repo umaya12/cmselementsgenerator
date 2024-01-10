@@ -16,14 +16,18 @@ class SnippetGb implements FileCreatorInterface
 
     public function createFile(string $path): void
     {
+        $formData = $this->cmsFormDataManager->getCmsFormData();
+    if($formData["isEnglishVersionActive"] ===true){
         if (strpos($path, "sw-cms/snippet/en-GB.json")) {
             file_put_contents($path, $this->getContent());
         }
     }
 
+    }
+
     public function getContent(): string
     {
         $formData = $this->cmsFormDataManager->getCmsFormData();
-        return "Need Only Content";
+        return "";
     }
 }

@@ -31,7 +31,7 @@ import './cms-element-preview-$cmsElementTechnicalName.scss'
 const {Component}=Shopware;
 Component.register(\"sw-cms-el-preview-$cmsElementTechnicalName\", {
     template,
-}";
+})";
         return $content;
     }
 }
